@@ -1,0 +1,15 @@
+services:
+  moments:
+    image: kingwrcy/moments:latest
+    container_name: moments
+    restart: always
+    environment:
+      PORT: 30000
+      JWT_KEY: 24ef6995-d9c9-47b4-8a55-2c74a94796c6
+    ports:
+      - 30000:30000
+    volumes:
+      - data:/app/data
+
+volumes:
+  data:

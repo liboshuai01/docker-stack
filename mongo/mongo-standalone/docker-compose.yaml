@@ -1,0 +1,20 @@
+version: '2.1'
+
+services:
+  mongodb:
+    image: docker.io/bitnami/mongodb:4.4.2
+    restart: always
+    ports:
+      - "27018:27017"
+    volumes:
+      - 'mongodb_data:/bitnami/mongodb'
+    environment:
+      - MONGODB_ROOT_USER=root
+      - MONGODB_ROOT_PASSWORD=Rongshu@2024
+      - MONGODB_USERNAME=lbs
+      - MONGODB_PASSWORD=Rongshu@2024
+      - MONGODB_DATABASE=starlink_risk
+    mem_limit: 4g
+
+volumes:
+  mongodb_data:

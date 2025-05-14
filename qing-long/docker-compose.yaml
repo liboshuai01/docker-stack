@@ -1,0 +1,13 @@
+version: '2.1'
+
+services:
+  web:
+    image: whyour/qinglong:latest
+    volumes:
+      - ./data:/ql/data
+    ports:
+      - "0.0.0.0:5700:5700"
+    environment:
+      QlBaseUrl: '/'
+    restart: always
+    mem_limit: 4g

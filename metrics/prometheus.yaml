@@ -1,0 +1,73 @@
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - docker:9093
+
+rule_files:
+  - /etc/prometheus/alter_rule.yml
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: 'docker'
+    static_configs:
+      - targets: ['docker:9100']
+  - job_name: 'one'
+    static_configs:
+      - targets: ['one:9100']
+  - job_name: 'two'
+    static_configs:
+      - targets: ['two:9100']
+  - job_name: 'three'
+    static_configs:
+      - targets: ['three:9100']
+
+  - job_name: "kafka_exporter"
+    static_configs:
+      - targets: ["docker:9308"]
+
+  - job_name: 'doirs'
+    static_configs:
+      - targets: ['one:8130', 'two:8130', 'three:8130']
+        labels:
+          group: fe
+      - targets: ['one:8140', 'two:8140', 'three:8140']
+        labels:
+          group: be
+
+  - job_name: "redis_exporter"
+    static_configs:
+      - targets: ["docker:9121"]
+  - job_name: 'redis_exporter_targets'
+    static_configs:
+      - targets:
+          - redis://one:6379
+          - redis://one:6380
+          - redis://two:6379
+          - redis://two:6380
+          - redis://three:6379
+          - redis://three:6380
+    metrics_path: /scrape
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: docker:9121
+
+  - job_name: 'elasticsearch-exporter'
+    static_configs:
+      - targets:
+          - 'docker:9114'
+
+  - job_name: "pushgateway"
+    static_configs:
+      - targets: ["docker:9092"]

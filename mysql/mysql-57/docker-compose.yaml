@@ -1,0 +1,36 @@
+version: '2.1'
+
+services:
+  mysql57:
+    image: docker.io/bitnami/mysql:5.7.42
+    container_name: mysql57
+    restart: always
+    ports:
+      - 3307:3306
+    volumes:
+      - data:/bitnami/mysql/data
+      - logs:/opt/bitnami/mysql/logs
+    environment:
+      # 密码不能包含特殊字符
+      - MYSQL_ROOT_PASSWORD=Lbs2024
+      - MYSQL_USER=lbs
+      # 密码不能包含特殊字符
+      - MYSQL_PASSWORD=Lbs2024
+      - MYSQL_DATABASE=test
+      - TZ=Asia/Shanghai
+    healthcheck:
+      test: ['CMD', '/opt/bitnami/scripts/mysql/healthcheck.sh']
+      interval: 15s
+      timeout: 5s
+      retries: 6
+    # 用来限制5.7的资源占用，否则会占用大量内存
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 26677
+        hard: 46677
+    mem_limit: 8g
+
+volumes:
+  data:
+  logs:

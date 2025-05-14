@@ -1,0 +1,116 @@
+version: "3"
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.36.2
+    container_name: prometheus
+    volumes:
+      - prometheus_conf:/etc/prometheus
+      - prometheus_data:/prometheus
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "9091:9090"
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--web.enable-lifecycle"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 4g
+    extra_hosts:
+      - "docker:10.0.0.95"
+      - "one:10.0.0.98"
+      - "two:10.0.0.99"
+      - "three:10.0.0.93"
+
+  pushgateway:
+    image: prom/pushgateway:v1.5.0
+    container_name: pushgateway
+    ports:
+      - "9092:9091"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 4g
+    extra_hosts:
+      - "docker:10.0.0.95"
+      - "one:10.0.0.98"
+      - "two:10.0.0.99"
+      - "three:10.0.0.93"
+
+  alertmanager:
+    image: prom/alertmanager:v0.25.0
+    container_name: alertmanager
+    ports:
+      - "9093:9093"
+    volumes:
+      - alertmanager_data:/etc/alertmanager
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 4g
+    extra_hosts:
+      - "docker:10.0.0.95"
+      - "one:10.0.0.98"
+      - "two:10.0.0.99"
+      - "three:10.0.0.93"
+
+  prometheus-alert:
+    image: feiyu563/prometheus-alert:master
+    container_name: prometheus-alert
+    ports:
+      - "9094:8080"
+    volumes:
+      - prometheus_alert_data:/app
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - PA_LOGIN_USER=alertuser
+      - PA_LOGIN_PASSWORD=123456
+      - PA_TITLE=prometheusAlert
+      - PA_OPEN_FEISHU=1
+      - PA_OPEN_DINGDING=0
+      - PA_OPEN_WEIXIN=1
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 4g
+    extra_hosts:
+      - "docker:10.0.0.95"
+      - "one:10.0.0.98"
+      - "two:10.0.0.99"
+      - "three:10.0.0.93"
+
+  grafana:
+    image: grafana/grafana:9.1.2
+    container_name: grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=Rongshu@2024
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "9095:3000"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 4g
+    extra_hosts:
+      - "docker:10.0.0.95"
+      - "one:10.0.0.98"
+      - "two:10.0.0.99"
+      - "three:10.0.0.93"
+
+volumes:
+  prometheus_conf:
+  prometheus_data:
+  prometheus_alert_data:
+  alertmanager_data:
+  grafana_data:

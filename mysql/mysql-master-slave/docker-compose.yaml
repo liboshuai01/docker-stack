@@ -1,0 +1,68 @@
+version: '2.1'
+
+services:
+  mysql_master:
+    image: bitnami/mysql:8.0.39
+    container_name: mysql_master
+    restart: always
+    ports:
+      - "3310:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=Rongshu@2024
+      - MYSQL_REPLICATION_MODE=master
+      - MYSQL_REPLICATION_USER=repl_user
+      - MYSQL_REPLICATION_PASSWORD=Rongshu@2024
+      - MYSQL_USER=lbs
+      - MYSQL_PASSWORD=Rongshu@2024
+      - MYSQL_DATABASE=test
+      - TZ=Asia/Shanghai
+    volumes:
+      - master_data:/bitnami/mysql/data
+      - master_logs:/opt/bitnami/mysql/logs
+    mem_limit: 4g
+
+  mysql_slave1:
+    image: bitnami/mysql:8.0.39
+    container_name: mysql_slave1
+    restart: always
+    ports:
+      - "3311:3306"
+    environment:
+      - MYSQL_REPLICATION_MODE=slave
+      - MYSQL_REPLICATION_USER=repl_user
+      - MYSQL_REPLICATION_PASSWORD=Rongshu@2024
+      - MYSQL_MASTER_HOST=mysql_master
+      - MYSQL_MASTER_PORT_NUMBER=3306
+      - MYSQL_MASTER_ROOT_PASSWORD=Rongshu@2024
+      - TZ=Asia/Shanghai
+    volumes:
+      - slave1_data:/bitnami/mysql/data
+      - slave1_logs:/opt/bitnami/mysql/logs
+    mem_limit: 4g
+
+  mysql_slave2:
+    image: bitnami/mysql:8.0.39
+    container_name: mysql_slave2
+    restart: always
+    ports:
+      - "3312:3306"
+    environment:
+      - MYSQL_REPLICATION_MODE=slave
+      - MYSQL_REPLICATION_USER=repl_user
+      - MYSQL_REPLICATION_PASSWORD=Rongshu@2024
+      - MYSQL_MASTER_HOST=mysql_master
+      - MYSQL_MASTER_PORT_NUMBER=3306
+      - MYSQL_MASTER_ROOT_PASSWORD=Rongshu@2024
+      - TZ=Asia/Shanghai
+    volumes:
+      - slave2_data:/bitnami/mysql/data
+      - slave2_logs:/opt/bitnami/mysql/logs
+    mem_limit: 4g
+
+volumes:
+  master_data:
+  slave1_data:
+  slave2_data:
+  master_logs:
+  slave1_logs:
+  slave2_logs:

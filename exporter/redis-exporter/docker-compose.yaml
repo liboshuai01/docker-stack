@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.58.0
+    container_name: redis-exporter
+    restart: always
+    command:
+      - "-redis.addr=one:6379"
+      - "-redis.password=Rongshu@2024"
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - "9121:9121"
+    volumes:
+      - /etc/localtime:/etc/localtime
+    deploy:
+      resources:
+        limits:
+          memory: 4g
+    extra_hosts:
+      - "docker:10.0.0.95"
+      - "one:10.0.0.98"
+      - "two:10.0.0.99"
+      - "three:10.0.0.93"

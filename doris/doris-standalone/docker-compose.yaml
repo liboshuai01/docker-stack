@@ -1,0 +1,38 @@
+version: "3"
+services:
+  fe:
+    image: liboshuai01/apache-doris:2.0.13-fe
+    hostname: fe
+    environment:
+      - FE_SERVERS=fe1:${HOST_IP}:9010
+      - FE_ID=1
+    volumes:
+      - fe_doris_meta:/opt/apache-doris/fe/doris-meta/
+      - fe_log:/opt/apache-doris/fe/log/
+    ports:
+      - "8030:8030"
+      - "9020:9020"
+      - "9030:9030"
+      - "9010:9010"
+  be:
+    image: liboshuai01/apache-doris:2.0.13-be
+    hostname: be
+    environment:
+      - FE_SERVERS=fe1:${HOST_IP}:9010
+      - BE_ADDR=${HOST_IP}:9050
+    volumes:
+      - be_storage:/opt/apache-doris/be/storage/
+      - be_script:/docker-entrypoint-initdb.d/
+    ports:
+      - "9060:9060"
+      - "8040:8040"
+      - "9050:9050"
+      - "8060:8060"
+    depends_on:
+      - fe
+
+volumes:
+  fe_doris_meta:
+  fe_log:
+  be_storage:
+  be_script:
