@@ -1,0 +1,79 @@
+version: '2.1'
+
+services:
+  es01:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:7.5.2"
+    container_name: es01
+    restart: always
+    ports:
+      - "9201:9200"
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es02,es03
+      - cluster.initial_master_nodes=es01,es02,es03
+      - bootstrap.memory_lock=true
+      # -Xms与-Xmx参数值要一致（最少2g）
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    # 此限制要大于ES_JAVA_OPTS的参数1g
+    mem_limit: 3g
+
+  es02:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:7.5.2"
+    container_name: es02
+    restart: always
+    ports:
+      - "9202:9200"
+    volumes:
+      - data02:/usr/share/elasticsearch/data
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - node.name=es02
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es01,es03
+      - cluster.initial_master_nodes=es01,es02,es03
+      - bootstrap.memory_lock=true
+      # -Xms与-Xmx参数值要一致（最少2g）
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    # 此限制要大于ES_JAVA_OPTS的参数1g
+    mem_limit: 3g
+
+  es03:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:7.5.2"
+    container_name: es03
+    restart: always
+    ports:
+      - "9203:9200"
+    volumes:
+      - data03:/usr/share/elasticsearch/data
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - node.name=es03
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es01,es02
+      - cluster.initial_master_nodes=es01,es02,es03
+      - bootstrap.memory_lock=true
+      # -Xms与-Xmx参数值要一致（最少2g）
+      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    # 此限制要大于ES_JAVA_OPTS的参数1g
+    mem_limit: 3g
+
+volumes:
+  data01:
+  data02:
+  data03:
