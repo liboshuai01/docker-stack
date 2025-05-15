@@ -1,9 +1,9 @@
 version: '2.1'
 
 services:
-  zookeeper:
+  zookeeper01:
     image: 'bitnami/zookeeper:3.6.1'
-    container_name: zookeeper
+    container_name: zookeeper01
     restart: unless-stopped
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
