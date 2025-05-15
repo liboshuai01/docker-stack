@@ -13,7 +13,7 @@ services:
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
       - "--web.enable-lifecycle"
-    restart: always
+    restart: unless-stopped
     deploy:
       resources:
         limits:
@@ -31,7 +31,7 @@ services:
       - "9092:9091"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-    restart: always
+    restart: unless-stopped
     deploy:
       resources:
         limits:
@@ -50,7 +50,7 @@ services:
     volumes:
       - alertmanager_data:/etc/alertmanager
       - /etc/localtime:/etc/localtime:ro
-    restart: always
+    restart: unless-stopped
     deploy:
       resources:
         limits:
@@ -76,7 +76,7 @@ services:
       - PA_OPEN_FEISHU=1
       - PA_OPEN_DINGDING=0
       - PA_OPEN_WEIXIN=1
-    restart: always
+    restart: unless-stopped
     deploy:
       resources:
         limits:
@@ -97,7 +97,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     ports:
       - "9095:3000"
-    restart: always
+    restart: unless-stopped
     deploy:
       resources:
         limits:

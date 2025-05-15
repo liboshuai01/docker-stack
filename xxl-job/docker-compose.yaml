@@ -15,7 +15,7 @@ services:
               --xxl.job.accessToken=Rongshu@2024'
     volumes:
       - applogs:/data/applogs
-    restart: always
+    restart: unless-stopped
     deploy:
       resources:
         limits:

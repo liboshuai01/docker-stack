@@ -4,7 +4,7 @@ services:
   redis01:
     image: bitnami/redis-cluster:7.4.2
     container_name: redis01
-    restart: always
+    restart: unless-stopped
     ports:
       - 6381:6381 # redis连接用端口
       - 16381:16381 # redis之间消息连接的端口 默认是redis连接端口+10000
@@ -22,7 +22,7 @@ services:
   redis02:
     image: bitnami/redis-cluster:7.4.2
     container_name: redis02
-    restart: always
+    restart: unless-stopped
     ports:
       - 6382:6382
       - 16382:16382
@@ -40,7 +40,7 @@ services:
   redis03:
     image: bitnami/redis-cluster:7.4.2
     container_name: redis03
-    restart: always
+    restart: unless-stopped
     ports:
       - 6383:6383
       - 16383:16383
@@ -58,7 +58,7 @@ services:
   redis04:
     image: bitnami/redis-cluster:7.4.2
     container_name: redis04
-    restart: always
+    restart: unless-stopped
     ports:
       - 6384:6384
       - 16384:16384
@@ -76,7 +76,7 @@ services:
   redis05:
     image: bitnami/redis-cluster:7.4.2
     container_name: redis05
-    restart: always
+    restart: unless-stopped
     ports:
       - 6385:6385
       - 16385:16385
@@ -94,7 +94,7 @@ services:
   redis06:
     image: bitnami/redis-cluster:7.4.2
     container_name: redis06
-    restart: always
+    restart: unless-stopped
     ports:
       - 6386:6386
       - 16386:16386

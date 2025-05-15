@@ -9,7 +9,7 @@ services:
     volumes:
       - data:/data
       - /etc/localtime:/etc/localtime:ro
-    restart: always
+    restart: unless-stopped
     mem_limit: 4g
 
 volumes:

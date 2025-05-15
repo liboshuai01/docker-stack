@@ -6,7 +6,7 @@ services:
     container_name: "elasticsearch-exporter"
     command:
       - '--es.uri=http://${ES_ADDRESS}'
-    restart: always
+    restart: unless-stopped
     ports:
       - "9114:9114"
     volumes:

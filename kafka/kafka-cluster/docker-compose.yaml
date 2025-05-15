@@ -4,7 +4,7 @@ services:
   zookeeper:
     image: 'bitnami/zookeeper:3.6.1'
     container_name: zookeeper
-    restart: always
+    restart: unless-stopped
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
     ports:
@@ -18,7 +18,7 @@ services:
   kafka01:
     image: 'bitnami/kafka:2.5.0'
     container_name: kafka01
-    restart: always
+    restart: unless-stopped
     ports:
       - "9096:9092"
     volumes:
@@ -37,7 +37,7 @@ services:
   kafka02:
     image: 'bitnami/kafka:2.5.0'
     container_name: kafka02
-    restart: always
+    restart: unless-stopped
     ports:
       - "9097:9092"
     volumes:
@@ -56,7 +56,7 @@ services:
   kafka03:
     image: 'bitnami/kafka:2.5.0'
     container_name: kafka03
-    restart: always
+    restart: unless-stopped
     ports:
       - "9098:9092"
     volumes:

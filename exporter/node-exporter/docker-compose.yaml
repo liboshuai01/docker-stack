@@ -4,7 +4,7 @@ services:
   node-exporter:
     image: prom/node-exporter:v1.6.1
     container_name: node-exporter
-    restart: always
+    restart: unless-stopped
     network_mode: host
     pid: host
     volumes:

@@ -6,16 +6,11 @@ services:
     container_name: kafka-exporter
     ports:
       - "9308:9308"
-    command: ["--kafka.server=10.0.0.7:9096","--kafka.server=10.0.0.7:9097","--kafka.server=10.0.0.7:9098"]
-    restart: always
+    command: ["--kafka.server=${KAFKA_SERVER_01}","--kafka.server=${KAFKA_SERVER_02}","--kafka.server=${KAFKA_SERVER_03}"]
+    restart: unless-stopped
     volumes:
       - /etc/localtime:/etc/localtime:ro
     deploy:
       resources:
         limits:
           memory: 4g
-    extra_hosts:
-      - "docker:10.0.0.95"
-      - "one:10.0.0.98"
-      - "two:10.0.0.99"
-      - "three:10.0.0.93"

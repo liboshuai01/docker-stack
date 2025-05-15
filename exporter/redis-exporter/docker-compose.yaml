@@ -4,7 +4,7 @@ services:
   redis-exporter:
     image: oliver006/redis_exporter:v1.58.0
     container_name: redis-exporter
-    restart: always
+    restart: unless-stopped
     command:
       - "-redis.addr=one:6379"
       - "-redis.password=Rongshu@2024"

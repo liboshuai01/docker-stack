@@ -4,7 +4,7 @@ services:
   lobechat:
     image: lobehub/lobe-chat
     container_name: lobechat
-    restart: always
+    restart: unless-stopped
     ports:
       - '3210:3210'
     mem_limit: 4g
