@@ -9,7 +9,7 @@ services:
     command: ["--kafka.server=10.0.0.7:9096","--kafka.server=10.0.0.7:9097","--kafka.server=10.0.0.7:9098"]
     restart: always
     volumes:
-      - /etc/localtime:/etc/localtime
+      - /etc/localtime:/etc/localtime:ro
     deploy:
       resources:
         limits:

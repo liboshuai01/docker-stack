@@ -13,7 +13,7 @@ services:
     ports:
       - "9121:9121"
     volumes:
-      - /etc/localtime:/etc/localtime
+      - /etc/localtime:/etc/localtime:ro
     deploy:
       resources:
         limits:
