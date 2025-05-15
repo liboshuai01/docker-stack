@@ -32,7 +32,7 @@ services:
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9096
     mem_limit: 2g
     depends_on:
-      - zookeeper
+      - zookeeper01
 
   kafka02:
     image: 'bitnami/kafka:2.5.0'
@@ -51,7 +51,7 @@ services:
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9097
     mem_limit: 2g
     depends_on:
-      - zookeeper
+      - zookeeper01
 
   kafka03:
     image: 'bitnami/kafka:2.5.0'
@@ -70,7 +70,7 @@ services:
       - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9098
     mem_limit: 2g
     depends_on:
-      - zookeeper
+      - zookeeper01
 
 volumes:
   zoodata:
