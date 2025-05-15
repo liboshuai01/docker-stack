@@ -15,8 +15,3 @@ services:
       resources:
         limits:
           memory: 4g
-    extra_hosts:
-      - "docker:10.0.0.95"
-      - "one:10.0.0.98"
-      - "two:10.0.0.99"
-      - "three:10.0.0.93"
