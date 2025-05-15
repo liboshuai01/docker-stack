@@ -15,7 +15,7 @@ docker-compose up -d
 # 宿主机中执行
 [lbs@test kafka-cluster]$ docker-compose exec kafka01 bash
 # 进入容器后执行
-I have no name!@dc4a4d00df07:/$ zookeeper-shell.sh zookeeper:2181 ls /brokers/ids
+I have no name!@dc4a4d00df07:/$ zookeeper-shell.sh zookeeper01:2181 ls /brokers/ids
 Connecting to zookeeper:2181
 
 WATCHER::
