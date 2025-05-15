@@ -5,7 +5,7 @@ services:
     image: quay.io/prometheuscommunity/elasticsearch-exporter:v1.5.0
     container_name: "elasticsearch-exporter"
     command:
-      - '--es.uri=http://${ES_IP}:${ES_PORT}'
+      - '--es.uri=http://${ES_ADDRESS}'
     restart: always
     ports:
       - "9114:9114"
