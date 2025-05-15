@@ -1,9 +1,5 @@
 > 该清单文件实际部署可能存在问题，待验证
 
-# 使用 Docker Compose 部署 Apache Doris
-
-本文档将指导您如何使用 Docker Compose 快速部署 Apache Doris 服务。
-
 ## 前提准备
 
 1. 关闭宿主机swap分区，参考教程: [优化Centos关闭SELinux/Swap及资源限制调整](https://liboshuai.icu/pages/d040eabd/#%E5%85%B3%E9%97%AD-Swap-%E5%88%86%E5%8C%BA)
