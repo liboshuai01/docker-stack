@@ -11,24 +11,14 @@ docker-compose up -d
 
 ## 验证服务
 
-检查集群健康状况，确保`status`为`green`：
+访问`es-exporter`服务，确保正常返回html页面即可。
 ```shell
-[lbs@test es]$ curl -X GET "http://localhost:9200/_cluster/health?pretty"
-{
-  "cluster_name" : "docker-cluster",
-  "status" : "green",
-  "timed_out" : false,
-  "number_of_nodes" : 1,
-  "number_of_data_nodes" : 1,
-  "active_primary_shards" : 0,
-  "active_shards" : 0,
-  "relocating_shards" : 0,
-  "initializing_shards" : 0,
-  "unassigned_shards" : 0,
-  "delayed_unassigned_shards" : 0,
-  "number_of_pending_tasks" : 0,
-  "number_of_in_flight_fetch" : 0,
-  "task_max_waiting_in_queue_millis" : 0,
-  "active_shards_percent_as_number" : 100.0
-}
+[lbs@test es-exporter]$ curl -X GET "http://localhost:9114"
+<html>
+                        <head><title>Elasticsearch Exporter</title></head>
+                        <body>
+                        <h1>Elasticsearch Exporter</h1>
+                        <p><a href="/metrics">Metrics</a></p>
+                        </body>
+                        </html>
 ```
