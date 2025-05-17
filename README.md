@@ -109,25 +109,3 @@ docker-cookbook/
     ```bash
     docker compose down -v
     ```
-
-## 服务清单 (部分展示)
-
-本项目当前包含以下服务或组件的 Docker Compose 部署配置：
-
-*   [doris](#doris) (可能包含 `doris-cluster` 和 `doris-standalone`)
-*   [es](#es) (Elasticsearch)
-*   [exporter](#exporter) (各种用于采集监控指标的 Exporter，例如 Node Exporter, MySQL Exporter 等)
-*   [kafka](#kafka)
-*   [lobe-chat](#lobe-chat) (根据命名推测可能是某个聊天应用或 AI 应用)
-*   [metrics](#metrics) (可能是 Prometheus, Grafana 等指标相关的服务)
-*   [moments](#moments) (根据命名推测，可能是一个类社交动态或时间轴相关的应用)
-*   [mongo](#mongo) (MongoDB 数据库)
-*   [mysql](#mysql) (MySQL 数据库)
-*   [next-chat](#next-chat) (根据命名推测，可能是基于 Next.js 的聊天应用)
-*   [open-web-ui](#open-web-ui) (一个开放的 Web UI 项目)
-*   [portainer](#portainer) (Docker 管理界面)
-*   [qing-long](#qing-long) (青龙面板，一个计划任务面板)
-*   [redis](#redis) (Redis 缓存/数据库)
-*   [xxl-job](#xxl-job) (分布式任务调度平台)
-
-**注意:** 上述列表基于您提供的目录结构。每个子目录内的 `README.md` 文件提供了更详细的针对性说明，请务必参考。
