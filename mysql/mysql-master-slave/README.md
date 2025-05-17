@@ -12,7 +12,7 @@ docker-compose up -d
 
 ```shell
 # 安装mysql客户端（如果已安装，则跳过此步骤即可）
-[lbs@test mysql-57]$ sudo yum install -y mysql
+[lbs@test mysql-803]$ sudo yum install -y mysql
 # 通过mysql客户端连接docker中的mysql服务
-[lbs@test mysql-57]$ mysql -h ${HOST_IP} -P 3307 -u root -p
+[lbs@test mysql-803]$ mysql -h ${HOST_IP} -P 3308 -u root -p
 ```

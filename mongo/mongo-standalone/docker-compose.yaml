@@ -10,9 +10,9 @@ services:
       - 'mongodb_data:/bitnami/mongodb'
     environment:
       - MONGODB_ROOT_USER=root
-      - MONGODB_ROOT_PASSWORD=Rongshu@2024
+      - MONGODB_ROOT_PASSWORD=9ol.(OL>
       - MONGODB_USERNAME=lbs
-      - MONGODB_PASSWORD=Rongshu@2024
+      - MONGODB_PASSWORD=9ol.(OL>
       - MONGODB_DATABASE=starlink_risk
     mem_limit: 4g
 

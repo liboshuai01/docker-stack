@@ -12,9 +12,9 @@ services:
       - logs:/opt/bitnami/mysql/logs
     environment:
       # 密码
-      - MYSQL_ROOT_PASSWORD=Rongshu@2024
+      - MYSQL_ROOT_PASSWORD=9ol.(OL>
       - MYSQL_USER=lbs
-      - MYSQL_PASSWORD=Rongshu@2024
+      - MYSQL_PASSWORD=9ol.(OL>
       - MYSQL_DATABASE=test
       - TZ=Asia/Shanghai
     healthcheck:

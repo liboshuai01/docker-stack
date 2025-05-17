@@ -10,4 +10,4 @@ docker-compose up -d
 
 ## 验证服务
 
-浏览器访问`http://${宿主机IP}:30000`，出现moments页面即表示成功。
+浏览器访问`http://${HOST_IP}:30000`，出现moments页面即表示成功。

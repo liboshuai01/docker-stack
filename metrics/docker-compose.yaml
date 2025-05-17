@@ -71,7 +71,7 @@ services:
     image: grafana/grafana:9.1.2
     container_name: grafana
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=Rongshu@2024
+      - GF_SECURITY_ADMIN_PASSWORD=9ol.(OL>
     volumes:
       - grafana_data:/var/lib/grafana
       - /etc/localtime:/etc/localtime:ro

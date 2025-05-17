@@ -20,12 +20,12 @@ docker-compose up -d
 docker-compose exec fe bash
 
 # 容器内部操作
-mysql -h ${宿主机IP} -P 9030 -uroot
+mysql -h ${HOST_IP} -P 9030 -uroot
 SET PASSWORD FOR 'root' = PASSWORD('YOUR_PASSWORD');
-ALTER SYSTEM ADD BACKEND "${宿主机IP}:9050";
+ALTER SYSTEM ADD BACKEND "${HOST_IP}:9050";
 SHOW PROC '/backends';
 ```
 
 ## 验证服务
 
-浏览器打开`http://${宿主机IP}:8030`，输入`root`和`YOUR_PASSWORD`，即可进入 Doris FE 管理页面。
+浏览器打开`http://${HOST_IP}:8030`，输入`root`和`YOUR_PASSWORD`，即可进入 Doris FE 管理页面。

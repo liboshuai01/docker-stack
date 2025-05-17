@@ -19,6 +19,7 @@
 
 *   **Docker:** 容器运行时。
 *   **Docker Compose:** 用于定义和运行多容器 Docker 应用的工具。
+*   **设置HOST_IP环境变量**：推荐在`~/.bashrc`中添加`export HOST_IP=你的实际宿主机IP`，方便后续使用。
 
 > 推荐安装教程: [CentOS系统指定版本Docker与Docker Compose在线安装教程](https://liboshuai.icu/pages/987e17e9/)
 

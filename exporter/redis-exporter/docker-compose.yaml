@@ -6,8 +6,9 @@ services:
     container_name: redis-exporter
     restart: unless-stopped
     command:
-      - "-redis.addr=one:6379"
-      - "-redis.password=Rongshu@2024"
+      # 任意一个redis实例
+      - "-redis.addr=10.0.0.1:6379"
+      - "-redis.password=9ol.(OL>"
     environment:
       TZ: Asia/Shanghai
     ports:
@@ -18,8 +19,3 @@ services:
       resources:
         limits:
           memory: 4g
-    extra_hosts:
-      - "docker:10.0.0.95"
-      - "one:10.0.0.98"
-      - "two:10.0.0.99"
-      - "three:10.0.0.93"

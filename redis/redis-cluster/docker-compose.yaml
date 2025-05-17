@@ -15,7 +15,7 @@ services:
       - 'REDIS_CLUSTER_ANNOUNCE_IP=${HOST_IP}'
       - 'REDIS_PORT_NUMBER=6381' # 替换原始6379端口
       - 'REDIS_CLUSTER_DYNAMIC_IPS=no' # 标明不使用动态IP
-      - 'REDIS_PASSWORD=Rongshu@2024' # 认证密码
+      - 'REDIS_PASSWORD=9ol.(OL>' # 认证密码
       - 'REDIS_NODES=${HOST_IP}:6381 ${HOST_IP}:6382 ${HOST_IP}:6383 ${HOST_IP}:6384 ${HOST_IP}:6385 ${HOST_IP}:6386' # 集群节点IP端口
     mem_limit: 2g
 
@@ -33,7 +33,7 @@ services:
       - 'REDIS_CLUSTER_ANNOUNCE_IP=${HOST_IP}'
       - 'REDIS_PORT_NUMBER=6382'
       - 'REDIS_CLUSTER_DYNAMIC_IPS=no'
-      - 'REDIS_PASSWORD=Rongshu@2024'
+      - 'REDIS_PASSWORD=9ol.(OL>'
       - 'REDIS_NODES=${HOST_IP}:6381 ${HOST_IP}:6382 ${HOST_IP}:6383 ${HOST_IP}:6384 ${HOST_IP}:6385 ${HOST_IP}:6386'
     mem_limit: 2g
 
@@ -48,7 +48,7 @@ services:
       - data3:/bitnami/redis/data
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - 'REDIS_PASSWORD=Rongshu@2024'
+      - 'REDIS_PASSWORD=9ol.(OL>'
       - 'REDIS_CLUSTER_ANNOUNCE_IP=${HOST_IP}'
       - 'REDIS_CLUSTER_DYNAMIC_IPS=no'
       - 'REDIS_PORT_NUMBER=6383'
@@ -66,7 +66,7 @@ services:
       - data4:/bitnami/redis/data
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - 'REDIS_PASSWORD=Rongshu@2024'
+      - 'REDIS_PASSWORD=9ol.(OL>'
       - 'REDIS_CLUSTER_ANNOUNCE_IP=${HOST_IP}'
       - 'REDIS_CLUSTER_DYNAMIC_IPS=no'
       - 'REDIS_PORT_NUMBER=6384'
@@ -84,7 +84,7 @@ services:
       - data5:/bitnami/redis/data
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - 'REDIS_PASSWORD=Rongshu@2024'
+      - 'REDIS_PASSWORD=9ol.(OL>'
       - 'REDIS_CLUSTER_ANNOUNCE_IP=${HOST_IP}'
       - 'REDIS_CLUSTER_DYNAMIC_IPS=no'
       - 'REDIS_PORT_NUMBER=6385'
@@ -108,11 +108,11 @@ services:
       - redis04
       - redis05
     environment:
-      - 'REDIS_PASSWORD=Rongshu@2024'
+      - 'REDIS_PASSWORD=9ol.(OL>'
       - 'REDIS_CLUSTER_ANNOUNCE_IP=${HOST_IP}'
       - 'REDIS_CLUSTER_DYNAMIC_IPS=no'
       - 'REDIS_PORT_NUMBER=6386'
-      - 'REDISCLI_AUTH=Rongshu@2024'
+      - 'REDISCLI_AUTH=9ol.(OL>'
       - 'REDIS_CLUSTER_REPLICAS=1'
       - 'REDIS_NODES=${HOST_IP}:6381 ${HOST_IP}:6382 ${HOST_IP}:6383 ${HOST_IP}:6384 ${HOST_IP}:6385 ${HOST_IP}:6386'
       - 'REDIS_CLUSTER_CREATOR=yes'

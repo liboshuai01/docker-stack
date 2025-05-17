@@ -11,7 +11,7 @@ services:
       - 'data:/bitnami/redis/data'
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - 'REDIS_PASSWORD=Rongshu@2024'
+      - 'REDIS_PASSWORD=9ol.(OL>'
     mem_limit: 4g
 
 volumes:
