@@ -8,12 +8,12 @@ services:
     ports:
       - "3310:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=9ol.(OL>
+      - MYSQL_ROOT_PASSWORD=YOUR_PASSWORD
       - MYSQL_REPLICATION_MODE=master
       - MYSQL_REPLICATION_USER=repl_user
-      - MYSQL_REPLICATION_PASSWORD=9ol.(OL>
+      - MYSQL_REPLICATION_PASSWORD=YOUR_PASSWORD
       - MYSQL_USER=lbs
-      - MYSQL_PASSWORD=9ol.(OL>
+      - MYSQL_PASSWORD=YOUR_PASSWORD
       - MYSQL_DATABASE=test
       - TZ=Asia/Shanghai
     volumes:
@@ -30,10 +30,10 @@ services:
     environment:
       - MYSQL_REPLICATION_MODE=slave
       - MYSQL_REPLICATION_USER=repl_user
-      - MYSQL_REPLICATION_PASSWORD=9ol.(OL>
+      - MYSQL_REPLICATION_PASSWORD=YOUR_PASSWORD
       - MYSQL_MASTER_HOST=mysql_master
       - MYSQL_MASTER_PORT_NUMBER=3306
-      - MYSQL_MASTER_ROOT_PASSWORD=9ol.(OL>
+      - MYSQL_MASTER_ROOT_PASSWORD=YOUR_PASSWORD
       - TZ=Asia/Shanghai
     volumes:
       - slave1_data:/bitnami/mysql/data
@@ -49,10 +49,10 @@ services:
     environment:
       - MYSQL_REPLICATION_MODE=slave
       - MYSQL_REPLICATION_USER=repl_user
-      - MYSQL_REPLICATION_PASSWORD=9ol.(OL>
+      - MYSQL_REPLICATION_PASSWORD=YOUR_PASSWORD
       - MYSQL_MASTER_HOST=mysql_master
       - MYSQL_MASTER_PORT_NUMBER=3306
-      - MYSQL_MASTER_ROOT_PASSWORD=9ol.(OL>
+      - MYSQL_MASTER_ROOT_PASSWORD=YOUR_PASSWORD
       - TZ=Asia/Shanghai
     volumes:
       - slave2_data:/bitnami/mysql/data

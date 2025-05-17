@@ -12,10 +12,10 @@ services:
       - logs:/opt/bitnami/mysql/logs
     environment:
       # 密码不能包含特殊字符
-      - MYSQL_ROOT_PASSWORD=Lbs2024
+      - MYSQL_ROOT_PASSWORD=YOUR_PASSWORD
       - MYSQL_USER=lbs
       # 密码不能包含特殊字符
-      - MYSQL_PASSWORD=Lbs2024
+      - MYSQL_PASSWORD=YOUR_PASSWORD
       - MYSQL_DATABASE=test
       - TZ=Asia/Shanghai
     healthcheck:

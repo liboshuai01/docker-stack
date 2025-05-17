@@ -18,7 +18,7 @@ docker-compose up -d
 >   --host ${HOST_IP} \
 >   --port 27018 \
 >   --username lbs \
->   --password '9ol.(OL>' \
+>   --password 'YOUR_PASSWORD' \
 >   --authenticationDatabase starlink_risk \
 >   starlink_risk
 mongodb 03:31:17.50 
