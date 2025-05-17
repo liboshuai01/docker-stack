@@ -29,7 +29,7 @@ services:
       nofile:
         soft: 26677
         hard: 46677
-    mem_limit: 8g
+    mem_limit: 4g
 
 volumes:
   data:
