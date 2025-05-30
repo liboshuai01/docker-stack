@@ -1,4 +1,4 @@
-# docker-cookbook: 常用服务 Docker Compose 部署清单
+# 个人 Docker 应用部署方案集合
 
 ## 项目简介
 
@@ -25,7 +25,7 @@
 
 ## 项目结构
 
-项目根目录 `docker-cookbook` 下包含了各个服务的独立子目录。每个服务目录的命名通常对应于服务的名称。
+项目根目录 `docker-stack` 下包含了各个服务的独立子目录。每个服务目录的命名通常对应于服务的名称。
 
 每个服务子目录下通常包含以下关键文件：
 
@@ -34,7 +34,7 @@
 *   `README.md` (可选): 针对该服务的具体说明、配置细节、使用注意事项或访问方式等。**强烈建议查看该文件以获取更详细信息。**
 
 ```
-docker-cookbook/
+docker-stack/
 ├── .idea/             # IDE相关文件 (可忽略)
 ├── service-a/         # 服务 A 目录
 │   ├── .env
@@ -57,7 +57,7 @@ docker-cookbook/
 1.  **克隆本项目** (如果尚未克隆):
     ```bash
     git clone <repository_url>
-    cd docker-cookbook
+    cd docker-stack
     ```
     *请将 `<repository_url>` 替换为您的实际仓库地址。*
 
