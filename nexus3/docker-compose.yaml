@@ -10,8 +10,6 @@ services:
     volumes:
       - data:/nexus-data
       - /etc/localtime:/etc/localtime:ro
-    environment:
-      - TZ=Asia/Shanghai
     mem_limit: 4g
 
 volumes:
