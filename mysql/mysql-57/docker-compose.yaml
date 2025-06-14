@@ -6,7 +6,7 @@ services:
     container_name: mysql57
     restart: unless-stopped
     ports:
-      - 3307:3306
+      - '3307:3306'
     volumes:
       - data:/bitnami/mysql/data
       - logs:/opt/bitnami/mysql/logs
@@ -18,7 +18,6 @@ services:
       # 密码不能包含特殊字符
       - MYSQL_PASSWORD=YOUR_PASSWORD
       - MYSQL_DATABASE=test
-#      - TZ=Asia/Shanghai
     healthcheck:
       test: ['CMD', '/opt/bitnami/scripts/mysql/healthcheck.sh']
       interval: 15s

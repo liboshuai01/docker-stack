@@ -15,7 +15,6 @@ services:
       - MYSQL_USER=lbs
       - MYSQL_PASSWORD=YOUR_PASSWORD
       - MYSQL_DATABASE=test
-#      - TZ=Asia/Shanghai
     volumes:
       - master_data:/bitnami/mysql/data
       - master_logs:/opt/bitnami/mysql/logs
@@ -35,10 +34,10 @@ services:
       - MYSQL_MASTER_HOST=mysql_master
       - MYSQL_MASTER_PORT_NUMBER=3306
       - MYSQL_MASTER_ROOT_PASSWORD=YOUR_PASSWORD
-      - TZ=Asia/Shanghai
     volumes:
       - slave1_data:/bitnami/mysql/data
       - slave1_logs:/opt/bitnami/mysql/logs
+      - /etc/localtime:/etc/localtime:ro
     mem_limit: 4g
 
   mysql_slave2:
@@ -54,10 +53,10 @@ services:
       - MYSQL_MASTER_HOST=mysql_master
       - MYSQL_MASTER_PORT_NUMBER=3306
       - MYSQL_MASTER_ROOT_PASSWORD=YOUR_PASSWORD
-      - TZ=Asia/Shanghai
     volumes:
       - slave2_data:/bitnami/mysql/data
       - slave2_logs:/opt/bitnami/mysql/logs
+      - /etc/localtime:/etc/localtime:ro
     mem_limit: 4g
 
 volumes:

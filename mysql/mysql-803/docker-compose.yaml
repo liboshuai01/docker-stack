@@ -17,7 +17,6 @@ services:
       - MYSQL_USER=lbs
       - MYSQL_PASSWORD=YOUR_PASSWORD
       - MYSQL_DATABASE=test
-#      - TZ=Asia/Shanghai
     healthcheck:
       test: ['CMD', '/opt/bitnami/scripts/mysql/healthcheck.sh']
       interval: 15s
