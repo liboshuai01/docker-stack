@@ -15,10 +15,11 @@ services:
       - MYSQL_USER=lbs
       - MYSQL_PASSWORD=YOUR_PASSWORD
       - MYSQL_DATABASE=test
-      - TZ=Asia/Shanghai
+#      - TZ=Asia/Shanghai
     volumes:
       - master_data:/bitnami/mysql/data
       - master_logs:/opt/bitnami/mysql/logs
+      - /etc/localtime:/etc/localtime:ro
     mem_limit: 4g
 
   mysql_slave1:
