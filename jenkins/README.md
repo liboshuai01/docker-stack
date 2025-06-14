@@ -12,4 +12,4 @@ docker-compose up -d
 
 浏览器访问`http://${HOST_IP}:28080`，出现jenkins页面即表示成功。
 
-> 默认用户是 admin，唯一生成的密码可以在卷内的 secrets/initialAdminPassword 文件中找到.
+> 唯一生成的密码可以在卷内的 secrets/initialAdminPassword 文件中找到.
