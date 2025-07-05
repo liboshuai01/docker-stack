@@ -10,7 +10,7 @@ services:
       - '25230:25230'
     environment:
       - MEMOS_PORT=25230
-    mem_limit: 4g
+    mem_limit: 2g
 
 volumes:
   data:
