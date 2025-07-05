@@ -6,6 +6,7 @@ services:
     container_name: memos
     volumes:
       - data:/var/opt/memos
+      - /etc/localtime:/etc/localtime:ro
     ports:
       - '25230:25230'
     environment:
