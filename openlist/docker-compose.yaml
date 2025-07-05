@@ -1,0 +1,19 @@
+version: '2.1'
+services:
+  openlist:
+    image: 'openlistteam/openlist:latest'
+    container_name: openlist
+    volumes:
+      - 'data:/opt/openlist/data'
+    ports:
+      - '25244:5244'
+    environment:
+      - PUID=0
+      - PGID=0
+      - UMASK=022
+      - TZ=Asia/Shanghai
+    restart: unless-stopped
+    mem_limit: 2g
+
+volumes:
+  data:
