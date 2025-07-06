@@ -1,0 +1,15 @@
+version: '2.1'
+
+services:
+  showdoc:
+    image: star7th/showdoc
+    container_name: showdoc
+    ports:
+      - "20080:80"
+    volumes:
+      - data:/var/www/html/
+    restart: unless-stopped
+    mem_limit: 2g
+
+volumes:
+  data:
