@@ -1,0 +1,17 @@
+version: "2.1"
+
+services:
+  certimate:
+    image: certimate/certimate:latest
+    container_name: certimate
+    ports:
+      - '28090:8090'
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - data:/app/pb_data
+    restart: unless-stopped
+    mem_limit: 2g
+
+volumes:
+  data:
