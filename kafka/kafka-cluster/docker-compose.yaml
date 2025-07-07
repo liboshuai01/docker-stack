@@ -6,7 +6,7 @@ services:
     environment:
       - 'ALLOW_ANONYMOUS_LOGIN=yes'
     ports:
-      - '2182:2181'
+      - '2183:2181'
     volumes:
       - 'zoodata:/bitnami/zookeeper/data'
       - '/etc/localtime:/etc/localtime:ro'
@@ -21,7 +21,7 @@ services:
     image: bitnami/kafka:2.5.0
     container_name: kafka01
     ports:
-      - '9096:9092'
+      - '9094:9092'
     volumes:
       - 'data1:/bitnami/kafka/data'
       - '/etc/localtime:/etc/localtime:ro'
@@ -44,7 +44,7 @@ services:
     image: bitnami/kafka:2.5.0
     container_name: kafka02
     ports:
-      - '9097:9092'
+      - '9095:9092'
     volumes:
       - 'data2:/bitnami/kafka/data'
       - '/etc/localtime:/etc/localtime:ro'
@@ -67,7 +67,7 @@ services:
     image: bitnami/kafka:2.5.0
     container_name: kafka03
     ports:
-      - '9098:9092'
+      - '9096:9092'
     volumes:
       - 'data3:/bitnami/kafka/data'
       - '/etc/localtime:/etc/localtime:ro'
