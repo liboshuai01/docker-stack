@@ -1,10 +1,13 @@
-version: '2.1'
-
 services:
+
   lobechat:
     image: lobehub/lobe-chat
     container_name: lobechat
-    restart: unless-stopped
     ports:
       - '3210:3210'
-    mem_limit: 4g
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1G'
