@@ -1,0 +1,13 @@
+services:
+  drawio:
+    image: jgraph/drawio:latest
+    container_name: drawio
+    ports:
+      - '18080:8080'
+      - '18443:8443'
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: 1
+          memory: 1G
