@@ -1,16 +1,19 @@
 services:
 
   code-server:
-    image: codercom/code-server:latest
+    image: linuxserver/code-server:latest
     container_name: code-server
-    ports:
-      - '38080:8080'
-    volumes:
-      - 'config:/home/coder/.config'
-      - 'project:/home/coder/project'
-    user: '${UID}:${GID}'
     environment:
-      - 'DOCKER_USER=${USER}'
+      - 'PUID=1000'
+      - 'PGID=1000'
+      - 'TZ=Asia/Shanghai'
+      - 'PASSWORD=${PASSWORD}'
+      - 'SUDO_PASSWORD=${SUDO_PASSWORD}'
+      - 'DEFAULT_WORKSPACE=/config/workspace'
+    ports:
+      - '18443:8443'
+    volumes:
+      - 'data:/config'
     restart: unless-stopped
     deploy:
       resources:
