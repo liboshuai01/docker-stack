@@ -1,21 +1,21 @@
 services:
 
   es01:
-    image: "docker.elastic.co/elasticsearch/elasticsearch:7.5.2"
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
     container_name: es01
     ports:
       - '9201:9200'
     volumes:
-      - data01:/usr/share/elasticsearch/data
-      - /etc/localtime:/etc/localtime:ro
+      - 'data01:/usr/share/elasticsearch/data'
+      - '/etc/localtime:/etc/localtime:ro'
     environment:
-      - node.name=es01
-      - cluster.name=es-docker-cluster
-      - discovery.seed_hosts=es02,es03
-      - cluster.initial_master_nodes=es01,es02,es03
-      - bootstrap.memory_lock=true
+      - 'node.name=es01'
+      - 'cluster.name=es-docker-cluster'
+      - 'discovery.seed_hosts=es02,es03'
+      - 'cluster.initial_master_nodes=es01,es02,es03'
+      - 'bootstrap.memory_lock=true'
       # -Xms与-Xmx参数值要一致（最少2g）
-      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - 'ES_JAVA_OPTS=-Xms2g -Xmx2g'
     ulimits:
       memlock:
         soft: -1
@@ -29,21 +29,21 @@ services:
           memory: '3G'
 
   es02:
-    image: "docker.elastic.co/elasticsearch/elasticsearch:7.5.2"
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
     container_name: es02
     ports:
       - '9202:9200'
     volumes:
-      - data02:/usr/share/elasticsearch/data
-      - /etc/localtime:/etc/localtime:ro
+      - 'data02:/usr/share/elasticsearch/data'
+      - '/etc/localtime:/etc/localtime:ro'
     environment:
-      - node.name=es02
-      - cluster.name=es-docker-cluster
-      - discovery.seed_hosts=es01,es03
-      - cluster.initial_master_nodes=es01,es02,es03
-      - bootstrap.memory_lock=true
+      - 'node.name=es02'
+      - 'cluster.name=es-docker-cluster'
+      - 'discovery.seed_hosts=es01,es03'
+      - 'cluster.initial_master_nodes=es01,es02,es03'
+      - 'bootstrap.memory_lock=true'
       # -Xms与-Xmx参数值要一致（最少2g）
-      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - 'ES_JAVA_OPTS=-Xms2g -Xmx2g'
     ulimits:
       memlock:
         soft: -1
@@ -57,21 +57,21 @@ services:
           memory: '3G'
 
   es03:
-    image: "docker.elastic.co/elasticsearch/elasticsearch:7.5.2"
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
     container_name: es03
     ports:
-      - "9203:9200"
+      - '9203:9200'
     volumes:
       - data03:/usr/share/elasticsearch/data
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - node.name=es03
-      - cluster.name=es-docker-cluster
-      - discovery.seed_hosts=es01,es02
-      - cluster.initial_master_nodes=es01,es02,es03
-      - bootstrap.memory_lock=true
+      - 'node.name=es03'
+      - 'cluster.name=es-docker-cluster'
+      - 'discovery.seed_hosts=es01,es02'
+      - 'cluster.initial_master_nodes=es01,es02,es03'
+      - 'bootstrap.memory_lock=true'
       # -Xms与-Xmx参数值要一致（最少2g）
-      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - 'ES_JAVA_OPTS=-Xms2g -Xmx2g'
     ulimits:
       memlock:
         soft: -1
