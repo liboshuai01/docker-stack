@@ -1,28 +1,31 @@
-version: '2.1'
-
 services:
+
   mysql8:
     image: bitnami/mysql:8.0.39
     container_name: mysql8
-    restart: unless-stopped
     ports:
-      - 3308:3306
+      - '3308:3306'
     volumes:
-      - data:/bitnami/mysql/data
-      - logs:/opt/bitnami/mysql/logs
-      - /etc/localtime:/etc/localtime:ro
+      - 'data:/bitnami/mysql/data'
+      - 'logs:/opt/bitnami/mysql/logs'
+      - '/etc/localtime:/etc/localtime:ro'
     environment:
       # 密码
-      - MYSQL_ROOT_PASSWORD=YOUR_PASSWORD
-      - MYSQL_USER=lbs
-      - MYSQL_PASSWORD=YOUR_PASSWORD
-      - MYSQL_DATABASE=test
+      - 'MYSQL_ROOT_PASSWORD=YOUR_PASSWORD'
+      - 'MYSQL_USER=lbs'
+      - 'MYSQL_PASSWORD=YOUR_PASSWORD'
+      - 'MYSQL_DATABASE=test'
     healthcheck:
       test: ['CMD', '/opt/bitnami/scripts/mysql/healthcheck.sh']
       interval: 15s
       timeout: 5s
       retries: 6
-    mem_limit: 4g
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '4G'
 
 volumes:
   data:

@@ -1,20 +1,24 @@
-version: '2.1'
-
 services:
+  
   mongodb:
     image: docker.io/bitnami/mongodb:4.4.2
-    restart: unless-stopped
+    container_name: mongodb
     ports:
-      - "27018:27017"
+      - '27018:27017'
     volumes:
       - 'mongodb_data:/bitnami/mongodb'
     environment:
-      - MONGODB_ROOT_USER=root
-      - MONGODB_ROOT_PASSWORD=YOUR_PASSWORD
-      - MONGODB_USERNAME=lbs
-      - MONGODB_PASSWORD=YOUR_PASSWORD
-      - MONGODB_DATABASE=starlink_risk
-    mem_limit: 4g
+      - 'MONGODB_ROOT_USER=root'
+      - 'MONGODB_ROOT_PASSWORD=YOUR_PASSWORD'
+      - 'MONGODB_USERNAME=lbs'
+      - 'MONGODB_PASSWORD=YOUR_PASSWORD'
+      - 'MONGODB_DATABASE=starlink_risk'
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2G'
 
 volumes:
   mongodb_data:

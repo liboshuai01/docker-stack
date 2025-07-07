@@ -1,63 +1,74 @@
-version: '2.1'
-
 services:
+  
   mysql_master:
     image: bitnami/mysql:8.0.39
     container_name: mysql_master
-    restart: unless-stopped
     ports:
-      - "3310:3306"
+      - '3310:3306'
     environment:
-      - MYSQL_ROOT_PASSWORD=YOUR_PASSWORD
-      - MYSQL_REPLICATION_MODE=master
-      - MYSQL_REPLICATION_USER=repl_user
-      - MYSQL_REPLICATION_PASSWORD=YOUR_PASSWORD
-      - MYSQL_USER=lbs
-      - MYSQL_PASSWORD=YOUR_PASSWORD
-      - MYSQL_DATABASE=test
+      - 'MYSQL_ROOT_PASSWORD=YOUR_PASSWORD'
+      - 'MYSQL_REPLICATION_MODE=master'
+      - 'MYSQL_REPLICATION_USER=repl_user'
+      - 'MYSQL_REPLICATION_PASSWORD=YOUR_PASSWORD'
+      - 'MYSQL_USER=lbs'
+      - 'MYSQL_PASSWORD=YOUR_PASSWORD'
+      - 'MYSQL_DATABASE=test'
     volumes:
-      - master_data:/bitnami/mysql/data
-      - master_logs:/opt/bitnami/mysql/logs
-      - /etc/localtime:/etc/localtime:ro
-    mem_limit: 4g
+      - 'master_data:/bitnami/mysql/data'
+      - 'master_logs:/opt/bitnami/mysql/logs'
+      - '/etc/localtime:/etc/localtime:ro'
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '4G'
 
   mysql_slave1:
     image: bitnami/mysql:8.0.39
     container_name: mysql_slave1
-    restart: unless-stopped
     ports:
-      - "3311:3306"
+      - '3311:3306'
     environment:
-      - MYSQL_REPLICATION_MODE=slave
-      - MYSQL_REPLICATION_USER=repl_user
-      - MYSQL_REPLICATION_PASSWORD=YOUR_PASSWORD
-      - MYSQL_MASTER_HOST=mysql_master
-      - MYSQL_MASTER_PORT_NUMBER=3306
-      - MYSQL_MASTER_ROOT_PASSWORD=YOUR_PASSWORD
+      - 'MYSQL_REPLICATION_MODE=slave'
+      - 'MYSQL_REPLICATION_USER=repl_user'
+      - 'MYSQL_REPLICATION_PASSWORD=YOUR_PASSWORD'
+      - 'MYSQL_MASTER_HOST=mysql_master'
+      - 'MYSQL_MASTER_PORT_NUMBER=3306'
+      - 'MYSQL_MASTER_ROOT_PASSWORD=YOUR_PASSWORD'
     volumes:
-      - slave1_data:/bitnami/mysql/data
-      - slave1_logs:/opt/bitnami/mysql/logs
-      - /etc/localtime:/etc/localtime:ro
-    mem_limit: 4g
+      - 'slave1_data:/bitnami/mysql/data'
+      - 'slave1_logs:/opt/bitnami/mysql/logs'
+      - '/etc/localtime:/etc/localtime:ro'
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '4G'
 
   mysql_slave2:
     image: bitnami/mysql:8.0.39
     container_name: mysql_slave2
-    restart: unless-stopped
     ports:
-      - "3312:3306"
+      - '3312:3306'
     environment:
-      - MYSQL_REPLICATION_MODE=slave
-      - MYSQL_REPLICATION_USER=repl_user
-      - MYSQL_REPLICATION_PASSWORD=YOUR_PASSWORD
-      - MYSQL_MASTER_HOST=mysql_master
-      - MYSQL_MASTER_PORT_NUMBER=3306
-      - MYSQL_MASTER_ROOT_PASSWORD=YOUR_PASSWORD
+      - 'MYSQL_REPLICATION_MODE=slave'
+      - 'MYSQL_REPLICATION_USER=repl_user'
+      - 'MYSQL_REPLICATION_PASSWORD=YOUR_PASSWORD'
+      - 'MYSQL_MASTER_HOST=mysql_master'
+      - 'MYSQL_MASTER_PORT_NUMBER=3306'
+      - 'MYSQL_MASTER_ROOT_PASSWORD=YOUR_PASSWORD'
     volumes:
-      - slave2_data:/bitnami/mysql/data
-      - slave2_logs:/opt/bitnami/mysql/logs
-      - /etc/localtime:/etc/localtime:ro
-    mem_limit: 4g
+      - 'slave2_data:/bitnami/mysql/data'
+      - 'slave2_logs:/opt/bitnami/mysql/logs'
+      - '/etc/localtime:/etc/localtime:ro'
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '4G'
 
 volumes:
   master_data:
