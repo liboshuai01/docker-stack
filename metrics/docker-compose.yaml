@@ -1,71 +1,74 @@
-version: "3"
-
 services:
+
   prometheus:
     image: prom/prometheus:v2.36.2
     container_name: prometheus
     volumes:
-      - prometheus_conf:/etc/prometheus
-      - prometheus_data:/prometheus
-      - /etc/localtime:/etc/localtime:ro
+      - 'prometheus_conf:/etc/prometheus'
+      - 'prometheus_data:/prometheus'
+      - '/etc/localtime:/etc/localtime:ro'
     ports:
-      - "10090:9090"
+      - '10090:9090'
     command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
-      - "--web.enable-lifecycle"
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-lifecycle'
     restart: unless-stopped
     deploy:
       resources:
         limits:
-          memory: 4g
+          cpus: '1'
+          memory: '2G'
 
   pushgateway:
     image: prom/pushgateway:v1.5.0
     container_name: pushgateway
     ports:
-      - "10091:9091"
+      - '10091:9091'
     volumes:
-      - /etc/localtime:/etc/localtime:ro
+      - '/etc/localtime:/etc/localtime:ro'
     restart: unless-stopped
     deploy:
       resources:
         limits:
-          memory: 4g
+          cpus: '1'
+          memory: '2G'
 
   alertmanager:
     image: prom/alertmanager:v0.25.0
     container_name: alertmanager
     ports:
-      - "10093:9093"
+      - '10093:9093'
     volumes:
-      - alertmanager_data:/etc/alertmanager
-      - /etc/localtime:/etc/localtime:ro
+      - 'alertmanager_data:/etc/alertmanager'
+      - '/etc/localtime:/etc/localtime:ro'
     restart: unless-stopped
     deploy:
       resources:
         limits:
-          memory: 4g
+          cpus: '1'
+          memory: '2G'
 
   prometheus-alert:
     image: feiyu563/prometheus-alert:master
     container_name: prometheus-alert
     ports:
-      - "10094:8080"
+      - '10094:8080'
     volumes:
-      - prometheus_alert_data:/app
-      - /etc/localtime:/etc/localtime:ro
+      - 'prometheus_alert_data:/app'
+      - '/etc/localtime:/etc/localtime:ro'
     environment:
-      - PA_LOGIN_USER=alertuser
-      - PA_LOGIN_PASSWORD=123456
-      - PA_TITLE=prometheusAlert
-      - PA_OPEN_FEISHU=1
-      - PA_OPEN_DINGDING=0
-      - PA_OPEN_WEIXIN=1
+      - 'PA_LOGIN_USER=alertuser'
+      - 'PA_LOGIN_PASSWORD=123456'
+      - 'PA_TITLE=prometheusAlert'
+      - 'PA_OPEN_FEISHU=1'
+      - 'PA_OPEN_DINGDING=0'
+      - 'PA_OPEN_WEIXIN=1'
     restart: unless-stopped
     deploy:
       resources:
         limits:
-          memory: 4g
+          cpus: '1'
+          memory: '2G'
 
   grafana:
     image: grafana/grafana:9.1.2
@@ -73,15 +76,16 @@ services:
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=YOUR_PASSWORD
     volumes:
-      - grafana_data:/var/lib/grafana
-      - /etc/localtime:/etc/localtime:ro
+      - 'grafana_data:/var/lib/grafana'
+      - '/etc/localtime:/etc/localtime:ro'
     ports:
-      - "10095:3000"
+      - '10095:3000'
     restart: unless-stopped
     deploy:
       resources:
         limits:
-          memory: 4g
+          cpus: '1'
+          memory: '2G'
 
 volumes:
   prometheus_conf:
