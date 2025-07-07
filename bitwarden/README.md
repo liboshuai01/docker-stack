@@ -10,4 +10,4 @@ docker-compose up -d
 
 ## 验证服务
 
-浏览器访问`http://${HOST_IP}:10080`，出现bitwarden页面即表示成功。
+无
