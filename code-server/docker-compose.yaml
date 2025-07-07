@@ -11,7 +11,7 @@ services:
       - 'SUDO_PASSWORD=${SUDO_PASSWORD}'
       - 'DEFAULT_WORKSPACE=/config/workspace'
     ports:
-      - '18443:8443'
+      - '28443:8443'
     volumes:
       - 'data:/config'
     restart: unless-stopped
