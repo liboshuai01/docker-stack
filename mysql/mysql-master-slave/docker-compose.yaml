@@ -21,8 +21,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
-          memory: '4G'
+          cpus: '1'
+          memory: '2G'
 
   mysql_slave1:
     image: bitnami/mysql:8.0.39
@@ -44,8 +44,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
-          memory: '4G'
+          cpus: '1'
+          memory: '2G'
 
   mysql_slave2:
     image: bitnami/mysql:8.0.39
@@ -67,8 +67,8 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '2'
-          memory: '4G'
+          cpus: '1'
+          memory: '2G'
 
 volumes:
   master_data:
