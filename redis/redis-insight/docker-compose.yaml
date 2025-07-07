@@ -1,16 +1,19 @@
-version: '2.1'
-
 services:
+  
   redisinsight:
     image: redis/redisinsight:2.60
     container_name: redisinsight
     ports:
-      - "5540:5540"
+      - '5540:5540'
     volumes:
-      - data:/data
-      - /etc/localtime:/etc/localtime:ro
+      - 'data:/data'
+      - '/etc/localtime:/etc/localtime:ro'
     restart: unless-stopped
-    mem_limit: 4g
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1G'
 
 volumes:
   data:
