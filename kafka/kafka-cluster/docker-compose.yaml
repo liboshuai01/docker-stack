@@ -1,76 +1,90 @@
-version: '2.1'
-
 services:
+  
   zookeeper01:
-    image: 'bitnami/zookeeper:3.6.1'
+    image: bitnami/zookeeper:3.6.1
     container_name: zookeeper01
-    restart: unless-stopped
     environment:
-      - ALLOW_ANONYMOUS_LOGIN=yes
+      - 'ALLOW_ANONYMOUS_LOGIN=yes'
     ports:
-      - "2182:2181"
+      - '2182:2181'
     volumes:
-      - zoodata:/bitnami/zookeeper/data
-      - /etc/localtime:/etc/localtime:ro
-    mem_limit: 2g
-
+      - 'zoodata:/bitnami/zookeeper/data'
+      - '/etc/localtime:/etc/localtime:ro'
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2G'
 
   kafka01:
-    image: 'bitnami/kafka:2.5.0'
+    image: bitnami/kafka:2.5.0
     container_name: kafka01
-    restart: unless-stopped
     ports:
-      - "9096:9092"
+      - '9096:9092'
     volumes:
-      - data1:/bitnami/kafka/data
-      - /etc/localtime:/etc/localtime:ro
+      - 'data1:/bitnami/kafka/data'
+      - '/etc/localtime:/etc/localtime:ro'
     environment:
-      - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_BROKER_ID=1
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper01:2181
-      - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9096
-    mem_limit: 2g
+      - 'ALLOW_PLAINTEXT_LISTENER=yes'
+      - 'KAFKA_BROKER_ID=1'
+      - 'KAFKA_ZOOKEEPER_CONNECT=zookeeper01:2181'
+      - 'KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092'
+      - 'KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9096'
     depends_on:
       - zookeeper01
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2G'
 
   kafka02:
-    image: 'bitnami/kafka:2.5.0'
+    image: bitnami/kafka:2.5.0
     container_name: kafka02
-    restart: unless-stopped
     ports:
-      - "9097:9092"
+      - '9097:9092'
     volumes:
-      - data2:/bitnami/kafka/data
-      - /etc/localtime:/etc/localtime:ro
+      - 'data2:/bitnami/kafka/data'
+      - '/etc/localtime:/etc/localtime:ro'
     environment:
-      - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_BROKER_ID=2
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper01:2181
-      - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9097
-    mem_limit: 2g
+      - 'ALLOW_PLAINTEXT_LISTENER=yes'
+      - 'KAFKA_BROKER_ID=2'
+      - 'KAFKA_ZOOKEEPER_CONNECT=zookeeper01:2181'
+      - 'KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092'
+      - 'KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9097'
     depends_on:
       - zookeeper01
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2G'
 
   kafka03:
-    image: 'bitnami/kafka:2.5.0'
+    image: bitnami/kafka:2.5.0
     container_name: kafka03
-    restart: unless-stopped
     ports:
-      - "9098:9092"
+      - '9098:9092'
     volumes:
-      - data3:/bitnami/kafka/data
-      - /etc/localtime:/etc/localtime:ro
+      - 'data3:/bitnami/kafka/data'
+      - '/etc/localtime:/etc/localtime:ro'
     environment:
-      - ALLOW_PLAINTEXT_LISTENER=yes
-      - KAFKA_BROKER_ID=3
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper01:2181
-      - KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092
-      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9098
-    mem_limit: 2g
+      - 'ALLOW_PLAINTEXT_LISTENER=yes'
+      - 'KAFKA_BROKER_ID=3'
+      - 'KAFKA_ZOOKEEPER_CONNECT=zookeeper01:2181'
+      - 'KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092'
+      - 'KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9098'
     depends_on:
       - zookeeper01
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2G'
 
 volumes:
   zoodata:
