@@ -1,19 +1,19 @@
-version: "3.8"
-
 services:
+
   redis-exporter:
     image: oliver006/redis_exporter:v1.58.0
     container_name: redis-exporter
-    restart: unless-stopped
     command:
       # 任意一个redis实例
-      - "-redis.addr=10.0.0.1:6379"
-      - "-redis.password=YOUR_PASSWORD"
+      - '-redis.addr=10.0.0.1:6379'
+      - '-redis.password=YOUR_PASSWORD'
     ports:
-      - "9121:9121"
+      - '9121:9121'
     volumes:
-      - /etc/localtime:/etc/localtime:ro
+      - '/etc/localtime:/etc/localtime:ro'
+    restart: unless-stopped
     deploy:
       resources:
         limits:
-          memory: 4g
+          cpus: '1'
+          memory: '1G'

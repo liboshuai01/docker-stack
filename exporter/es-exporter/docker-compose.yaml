@@ -1,17 +1,17 @@
-version: "3.8"
-
 services:
+
   elasticsearch-exporter:
     image: quay.io/prometheuscommunity/elasticsearch-exporter:v1.5.0
     container_name: "elasticsearch-exporter"
     command:
       - '--es.uri=http://${ES_ADDRESS}'
-    restart: unless-stopped
     ports:
-      - "9114:9114"
+      - '9114:9114'
     volumes:
       - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
     deploy:
       resources:
         limits:
-          memory: 4g
+          cpus: '1'
+          memory: '1G'
