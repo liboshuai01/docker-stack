@@ -1,10 +1,13 @@
-version: '2.1'
-
 services:
+
   nextchat:
-    image: 'yidadaa/chatgpt-next-web'
-    container_name: 'nextchat'
-    restart: unless-stopped
+    image: yidadaa/chatgpt-next-web
+    container_name: nextchat
     ports:
       - '3000:3000'
-    mem_limit: 4g
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1G'
