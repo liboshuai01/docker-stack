@@ -29,7 +29,7 @@ services:
       - 'ALLOW_PLAINTEXT_LISTENER=yes'
       - 'KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181'
       - 'KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092'
-      - 'KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9089'
+      - 'KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9093'
     depends_on:
       - zookeeper
     restart: unless-stopped

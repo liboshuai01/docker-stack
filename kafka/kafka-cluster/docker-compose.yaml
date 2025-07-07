@@ -30,7 +30,7 @@ services:
       - 'KAFKA_BROKER_ID=1'
       - 'KAFKA_ZOOKEEPER_CONNECT=zookeeper01:2181'
       - 'KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092'
-      - 'KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9096'
+      - 'KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9094'
     depends_on:
       - zookeeper01
     restart: unless-stopped
@@ -53,7 +53,7 @@ services:
       - 'KAFKA_BROKER_ID=2'
       - 'KAFKA_ZOOKEEPER_CONNECT=zookeeper01:2181'
       - 'KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092'
-      - 'KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9097'
+      - 'KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9095'
     depends_on:
       - zookeeper01
     restart: unless-stopped
@@ -76,7 +76,7 @@ services:
       - 'KAFKA_BROKER_ID=3'
       - 'KAFKA_ZOOKEEPER_CONNECT=zookeeper01:2181'
       - 'KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092'
-      - 'KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9098'
+      - 'KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOST_IP}:9096'
     depends_on:
       - zookeeper01
     restart: unless-stopped
