@@ -1,12 +1,10 @@
-version: '2.1'
-
 services:
+
   es01:
     image: "docker.elastic.co/elasticsearch/elasticsearch:7.5.2"
     container_name: es01
-    restart: unless-stopped
     ports:
-      - "9201:9200"
+      - '9201:9200'
     volumes:
       - data01:/usr/share/elasticsearch/data
       - /etc/localtime:/etc/localtime:ro
@@ -22,15 +20,19 @@ services:
       memlock:
         soft: -1
         hard: -1
+    restart: unless-stopped
     # 此限制要大于ES_JAVA_OPTS的参数1g
-    mem_limit: 3g
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '3G'
 
   es02:
     image: "docker.elastic.co/elasticsearch/elasticsearch:7.5.2"
     container_name: es02
-    restart: unless-stopped
     ports:
-      - "9202:9200"
+      - '9202:9200'
     volumes:
       - data02:/usr/share/elasticsearch/data
       - /etc/localtime:/etc/localtime:ro
@@ -46,13 +48,17 @@ services:
       memlock:
         soft: -1
         hard: -1
+    restart: unless-stopped
     # 此限制要大于ES_JAVA_OPTS的参数1g
-    mem_limit: 3g
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '3G'
 
   es03:
     image: "docker.elastic.co/elasticsearch/elasticsearch:7.5.2"
     container_name: es03
-    restart: unless-stopped
     ports:
       - "9203:9200"
     volumes:
@@ -70,8 +76,13 @@ services:
       memlock:
         soft: -1
         hard: -1
+    restart: unless-stopped
     # 此限制要大于ES_JAVA_OPTS的参数1g
-    mem_limit: 3g
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '3G'
 
 volumes:
   data01:

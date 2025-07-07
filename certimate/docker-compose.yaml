@@ -1,6 +1,5 @@
-version: "2.1"
-
 services:
+
   certimate:
     image: certimate/certimate:latest
     container_name: certimate
@@ -11,7 +10,11 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - data:/app/pb_data
     restart: unless-stopped
-    mem_limit: 2g
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1G'
 
 volumes:
   data:

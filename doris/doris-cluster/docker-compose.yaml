@@ -1,5 +1,5 @@
-version: '3'
 services:
+
   docker-fe-01:
     image: "apache/doris:doris-fe-2.1.7"
     container_name: "doris-fe-01"
@@ -8,14 +8,20 @@ services:
       - FE_SERVERS=fe1:172.20.80.2:9010,fe2:172.20.80.3:9010,fe3:172.20.80.4:9010
       - FE_ID=1
     ports:
-      - 8031:8030
-      - 9031:9030
+      - '8031:8030'
+      - '9031:9030'
     volumes:
       - doris_fe01_meta:/opt/apache-doris/fe/doris-meta
       - doris_fe01_log:/opt/apache-doris/fe/log
     networks:
       doris_net:
         ipv4_address: 172.20.80.2
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2G'
 
   docker-fe-02:
     image: "apache/doris:doris-fe-2.1.7"
@@ -25,14 +31,19 @@ services:
       - FE_SERVERS=fe1:172.20.80.2:9010,fe2:172.20.80.3:9010,fe3:172.20.80.4:9010
       - FE_ID=2
     ports:
-      - 8032:8030
-      - 9032:9030
+      - '8032:8030'
+      - '9032:9030'
     volumes:
       - doris_fe02_meta:/opt/apache-doris/fe/doris-meta
       - doris_fe02_log:/opt/apache-doris/fe/log
     networks:
       doris_net:
         ipv4_address: 172.20.80.3
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2G'
 
   docker-fe-03:
     image: "apache/doris:doris-fe-2.1.7"
@@ -42,14 +53,19 @@ services:
       - FE_SERVERS=fe1:172.20.80.2:9010,fe2:172.20.80.3:9010,fe3:172.20.80.4:9010
       - FE_ID=3
     ports:
-      - 8033:8030
-      - 9033:9030
+      - '8033:8030'
+      - '9033:9030'
     volumes:
       - doris_fe03_meta:/opt/apache-doris/fe/doris-meta
       - doris_fe03_log:/opt/apache-doris/fe/log
     networks:
       doris_net:
         ipv4_address: 172.20.80.4
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2G'
 
   docker-be-01:
     image: "apache/doris:doris-be-2.1.7"
@@ -63,7 +79,7 @@ services:
       - FE_SERVERS=fe1:172.20.80.2:9010,fe2:172.20.80.3:9010,fe3:172.20.80.4:9010
       - BE_ADDR=172.20.80.5:9050
     ports:
-      - 8041:8040
+      - '8041:8040'
     volumes:
       - doris_be01_storage:/opt/apache-doris/be/storage
       - doris_be01_script:/docker-entrypoint-initdb.d
@@ -71,6 +87,11 @@ services:
     networks:
       doris_net:
         ipv4_address: 172.20.80.5
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2G'
 
   docker-be-02:
     image: "apache/doris:doris-be-2.1.7"
@@ -84,7 +105,7 @@ services:
       - FE_SERVERS=fe1:172.20.80.2:9010,fe2:172.20.80.3:9010,fe3:172.20.80.4:9010
       - BE_ADDR=172.20.80.6:9050
     ports:
-      - 8042:8040
+      - '8042:8040'
     volumes:
       - doris_be02_storage:/opt/apache-doris/be/storage
       - doris_be02_script:/docker-entrypoint-initdb.d
@@ -92,6 +113,11 @@ services:
     networks:
       doris_net:
         ipv4_address: 172.20.80.6
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2G'
 
   docker-be-03:
     image: "apache/doris:doris-be-2.1.7"
@@ -105,7 +131,7 @@ services:
       - FE_SERVERS=fe1:172.20.80.2:9010,fe2:172.20.80.3:9010,fe3:172.20.80.4:9010
       - BE_ADDR=172.20.80.7:9050
     ports:
-      - 8043:8040
+      - '8043:8040'
     volumes:
       - doris_be03_storage:/opt/apache-doris/be/storage
       - doris_be03_script:/docker-entrypoint-initdb.d
@@ -113,6 +139,11 @@ services:
     networks:
       doris_net:
         ipv4_address: 172.20.80.7
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2G'
 
 networks:
   doris_net:

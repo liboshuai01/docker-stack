@@ -1,5 +1,5 @@
-version: "3"
 services:
+
   fe:
     image: liboshuai01/apache-doris:2.0.13-fe
     hostname: fe
@@ -10,10 +10,17 @@ services:
       - fe_doris_meta:/opt/apache-doris/fe/doris-meta/
       - fe_log:/opt/apache-doris/fe/log/
     ports:
-      - "8030:8030"
-      - "9020:9020"
-      - "9030:9030"
-      - "9010:9010"
+      - '8030:8030'
+      - '9020:9020'
+      - '9030:9030'
+      - '9010:9010'
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '4G'
+
   be:
     image: liboshuai01/apache-doris:2.0.13-be
     hostname: be
@@ -24,12 +31,18 @@ services:
       - be_storage:/opt/apache-doris/be/storage/
       - be_script:/docker-entrypoint-initdb.d/
     ports:
-      - "9060:9060"
-      - "8040:8040"
-      - "9050:9050"
-      - "8060:8060"
+      - '9060:9060'
+      - '8040:8040'
+      - '9050:9050'
+      - '8060:8060'
     depends_on:
       - fe
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '4G'
 
 volumes:
   fe_doris_meta:

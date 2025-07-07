@@ -1,12 +1,10 @@
-version: '2.1'
-
 services:
+
   es:
     image: "docker.elastic.co/elasticsearch/elasticsearch:7.5.2"
     container_name: es
-    restart: unless-stopped
     ports:
-      - "9200:9200"
+      - '9200:9200'
     volumes:
       - data:/usr/share/elasticsearch/data
       - /etc/localtime:/etc/localtime:ro
@@ -19,8 +17,13 @@ services:
       memlock:
         soft: -1
         hard: -1
+    restart: unless-stopped
     # 此限制要大于ES_JAVA_OPTS的参数1g
-    mem_limit: 3g
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: '3G'
 
 volumes:
   data:
