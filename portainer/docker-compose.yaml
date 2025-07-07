@@ -4,7 +4,7 @@ services:
     image: portainer/portainer-ce:latest
     container_name: portainer
     ports:
-      - '9001:9000'
+      - '19000:9000'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
       - 'data:/data'
