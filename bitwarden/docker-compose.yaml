@@ -7,6 +7,7 @@ services:
       - '${HOST_IP}:${HOST_PORT}:80'
     volumes:
       - 'data:/data'
+      - '/etc/localtime:/etc/localtime:ro'
     restart: ${RESTART_POLICY}
     deploy:
       resources:
