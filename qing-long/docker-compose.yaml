@@ -1,17 +1,21 @@
 services:
 
-  web:
-    image: whyour/qinglong:latest
-    container_name: qinglong
+  qinglong:
+    image: whyour/qinglong:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     volumes:
-      - './data:/ql/data'
+      - 'data:/ql/data'
+      - '/etc/localtime:/etc/localtime:ro'
     ports:
-      - '5700:5700'
+      - '${HOST_IP}:${HOST_PORT}:5700'
     environment:
-      - 'QlBaseUrl= /'
-    restart: unless-stopped
+      - 'QlBaseUrl=${QL_BASE_URL}'
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '2G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
+
+volumes:
+  data:
