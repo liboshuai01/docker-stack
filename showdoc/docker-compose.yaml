@@ -1,18 +1,19 @@
 services:
-  
+
   showdoc:
-    image: star7th/showdoc
-    container_name: showdoc
+    image: star7th/showdoc:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     ports:
-      - '20080:80'
+      - '${HOST_IP}:${HOST_PORT}:80'
     volumes:
       - 'data:/var/www/html/'
-    restart: unless-stopped
+      - '/etc/localtime:/etc/localtime:ro'
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
   data:
