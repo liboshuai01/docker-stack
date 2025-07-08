@@ -11,6 +11,6 @@ docker-compose up -d
 ## 验证服务
 
 ```bash
-export HOST_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env.example)
+export HOST_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env.example.example)
 curl "http://localhost:${HOST_PORT}/_cluster/health?pretty"
 ```

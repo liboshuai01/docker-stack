@@ -1,16 +1,19 @@
 services:
 
   kafka-exporter:
-    image: danielqsj/kafka-exporter:v1.0.0
-    container_name: kafka-exporter
+    image: danielqsj/kafka-exporter:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     ports:
-      - '9308:9308'
-    command: ["--kafka.server=${KAFKA_SERVER_01}","--kafka.server=${KAFKA_SERVER_02}","--kafka.server=${KAFKA_SERVER_03}"]
+      - '${HOST_PORT}:9308'
+    command:
+      - "--kafka.server=${KAFKA_SERVER_01}"
+      - "--kafka.server=${KAFKA_SERVER_02}"
+      - "--kafka.server=${KAFKA_SERVER_03}"
     volumes:
       - '/etc/localtime:/etc/localtime:ro'
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}

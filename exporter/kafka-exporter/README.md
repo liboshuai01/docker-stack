@@ -1,23 +1,18 @@
-## 前提准备
+## 配置环境
 
-1. 修改`.env`中的变量为你的实际数据。
+复制文件`.env.example`为`.env`，并根据需求修改配置。
+
+> 必须修改配置`KAFKA_SERVER_xx`为对应kafka节点地址。
 
 ## 启动服务
 
-```shell
+```bash
 docker-compose up -d
 ```
 
 ## 验证服务
 
-访问`kafka-exporter`服务，确保正常返回html页面即可。
-```shell
-[lbs@test kafka-exporter]$  curl -X GET "http://localhost:9308"
-<html>
-                <head><title>Kafka Exporter</title></head>
-                <body>
-                <h1>Kafka Exporter</h1>
-                <p><a href='/metrics'>Metrics</a></p>
-                </body>
-                </html>
+```bash
+export HOST_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env.example.example)
+curl 127.0.0.1:${HOST_PORT}
 ```

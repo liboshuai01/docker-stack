@@ -11,6 +11,6 @@ docker-compose up -d
 ## 验证服务
 
 ```bash
-export REDIS_PASSWORD=$(awk -F= '/^REDIS_PASSWORD=/ {print $2}' .env.example)
+export REDIS_PASSWORD=$(awk -F= '/^REDIS_PASSWORD=/ {print $2}' .env.example.example)
 docker-compose exec redis-standalone redis-cli -a "${REDIS_PASSWORD}" INFO
 ```
