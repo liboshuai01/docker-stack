@@ -1,0 +1,23 @@
+services:
+
+  homepage:
+    image: ghcr.io/gethomepage/homepage:v1.3.2
+    container_name: ${CONTAINER_NAME}
+    ports:
+      - '13000:3000'
+    environment:
+      - 'PUID=1000'
+      - 'PGID=1000'
+      - 'TZ=${TIME_ZONE}'
+    volumes:
+      - 'config:/app/config'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: '1G'
+
+volumes:
+  config:
