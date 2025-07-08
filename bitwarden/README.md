@@ -1,10 +1,10 @@
-## 前提准备
+## 配置环境
 
-无
+复制文件`.env.example`为`.env`，并根据需求修改配置。
 
 ## 启动服务
 
-```shell
+```bash
 docker-compose up -d
 ```
 
