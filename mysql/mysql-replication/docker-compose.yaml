@@ -1,74 +1,99 @@
 services:
-  
-  mysql_master:
-    image: bitnami/mysql:8.0.39
-    container_name: mysql_master
+
+  mysql-master:
+    image: bitnami/mysql:${IMAGE_VERSION}
+    container_name: ${MASTER_CONTAINER_NAME}
     ports:
-      - '3310:3306'
-    environment:
-      - 'MYSQL_ROOT_PASSWORD=YOUR_PASSWORD'
-      - 'MYSQL_REPLICATION_MODE=master'
-      - 'MYSQL_REPLICATION_USER=repl_user'
-      - 'MYSQL_REPLICATION_PASSWORD=YOUR_PASSWORD'
-      - 'MYSQL_USER=lbs'
-      - 'MYSQL_PASSWORD=YOUR_PASSWORD'
-      - 'MYSQL_DATABASE=test'
+      - '${HOST_IP}:${MASTER_HOST_PORT}:3306'
     volumes:
       - 'master_data:/bitnami/mysql/data'
       - 'master_logs:/opt/bitnami/mysql/logs'
       - '/etc/localtime:/etc/localtime:ro'
-    restart: unless-stopped
+    environment:
+      # --- 基础及主节点配置 ---
+      - 'MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}'
+      - 'MYSQL_REPLICATION_MODE=master'
+      - 'MYSQL_REPLICATION_USER=${MYSQL_REPLICATION_USER}'
+      - 'MYSQL_REPLICATION_PASSWORD=${MYSQL_REPLICATION_PASSWORD}'
+      # --- 初始化应用数据库 (仅在主节点) ---
+      - 'MYSQL_USER=${MYSQL_USER}'
+      - 'MYSQL_PASSWORD=${MYSQL_PASSWORD}'
+      - 'MYSQL_DATABASE=${MYSQL_DATABASE}'
+    healthcheck:
+      test: ['CMD', '/opt/bitnami/scripts/mysql/healthcheck.sh']
+      interval: 15s
+      timeout: 5s
+      retries: 6
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '2G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
-  mysql_slave1:
-    image: bitnami/mysql:8.0.39
-    container_name: mysql_slave1
+  mysql-slave1:
+    image: bitnami/mysql:${IMAGE_VERSION}
+    container_name: ${SLAVE1_CONTAINER_NAME}
     ports:
-      - '3311:3306'
-    environment:
-      - 'MYSQL_REPLICATION_MODE=slave'
-      - 'MYSQL_REPLICATION_USER=repl_user'
-      - 'MYSQL_REPLICATION_PASSWORD=YOUR_PASSWORD'
-      - 'MYSQL_MASTER_HOST=mysql_master'
-      - 'MYSQL_MASTER_PORT_NUMBER=3306'
-      - 'MYSQL_MASTER_ROOT_PASSWORD=YOUR_PASSWORD'
+      - '${HOST_IP}:${SLAVE1_HOST_PORT}:3306'
     volumes:
       - 'slave1_data:/bitnami/mysql/data'
       - 'slave1_logs:/opt/bitnami/mysql/logs'
       - '/etc/localtime:/etc/localtime:ro'
-    restart: unless-stopped
+    environment:
+      # --- 从节点配置 ---
+      - 'MYSQL_REPLICATION_MODE=slave'
+      - 'MYSQL_REPLICATION_USER=${MYSQL_REPLICATION_USER}'
+      - 'MYSQL_REPLICATION_PASSWORD=${MYSQL_REPLICATION_PASSWORD}'
+      - 'MYSQL_MASTER_HOST=${MASTER_CONTAINER_NAME}'
+      - 'MYSQL_MASTER_PORT_NUMBER=3306'
+      - 'MYSQL_MASTER_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}'
+    healthcheck:
+      test: ['CMD', '/opt/bitnami/scripts/mysql/healthcheck.sh']
+      interval: 15s
+      timeout: 5s
+      retries: 6
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '2G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
+    depends_on:
+      mysql-master:
+        condition: service_healthy
 
-  mysql_slave2:
-    image: bitnami/mysql:8.0.39
-    container_name: mysql_slave2
+  mysql-slave2:
+    image: bitnami/mysql:${IMAGE_VERSION}
+    container_name: ${SLAVE2_CONTAINER_NAME}
     ports:
-      - '3312:3306'
-    environment:
-      - 'MYSQL_REPLICATION_MODE=slave'
-      - 'MYSQL_REPLICATION_USER=repl_user'
-      - 'MYSQL_REPLICATION_PASSWORD=YOUR_PASSWORD'
-      - 'MYSQL_MASTER_HOST=mysql_master'
-      - 'MYSQL_MASTER_PORT_NUMBER=3306'
-      - 'MYSQL_MASTER_ROOT_PASSWORD=YOUR_PASSWORD'
+      - '${HOST_IP}:${SLAVE2_HOST_PORT}:3306'
     volumes:
       - 'slave2_data:/bitnami/mysql/data'
       - 'slave2_logs:/opt/bitnami/mysql/logs'
       - '/etc/localtime:/etc/localtime:ro'
-    restart: unless-stopped
+    environment:
+      # --- 从节点配置 ---
+      - 'MYSQL_REPLICATION_MODE=slave'
+      - 'MYSQL_REPLICATION_USER=${MYSQL_REPLICATION_USER}'
+      - 'MYSQL_REPLICATION_PASSWORD=${MYSQL_REPLICATION_PASSWORD}'
+      - 'MYSQL_MASTER_HOST=${MASTER_CONTAINER_NAME}'
+      - 'MYSQL_MASTER_PORT_NUMBER=3306'
+      - 'MYSQL_MASTER_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}'
+    healthcheck:
+      test: ['CMD', '/opt/bitnami/scripts/mysql/healthcheck.sh']
+      interval: 15s
+      timeout: 5s
+      retries: 6
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '2G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
+    depends_on:
+      mysql-master:
+        condition: service_healthy
 
 volumes:
   master_data:
