@@ -1,24 +1,27 @@
 services:
 
   homepage:
-    image: ghcr.io/gethomepage/homepage:latest
-    container_name: homepage
+    image: ghcr.io/gethomepage/homepage:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     ports:
-      - '13000:3000'
-    environment:
-      - 'PUID=1000'
-      - 'PGID=1000'
-      - 'TZ=Asia/Shanghai'
-      - 'HOMEPAGE_ALLOWED_HOSTS=${HOST_IP}:13000'
+      - '${HOST_IP}:${HOST_PORT}:3000'
     volumes:
       - 'config:/app/config'
-      - '/var/run/docker.sock:/var/run/docker.sock'
-    restart: unless-stopped
+      # 将宿主机的docker socket映射到容器内，用于Homepage监控Docker容器
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - '/etc/localtime:/etc/localtime:ro' # 统一时区
+    environment:
+      - 'PUID=${PUID}'
+      - 'PGID=${PGID}'
+      - 'TZ=${TZ}'
+      # 根据HOST_IP和HOST_PORT动态设置允许访问的主机
+      - 'HOMEPAGE_ALLOWED_HOSTS=${HOST_IP}:${HOST_PORT}'
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
   config:

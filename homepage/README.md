@@ -1,13 +1,18 @@
-## 前提准备
+## 配置环境
 
-1. 修改`.env`中的变量为你的实际数据。
+复制文件`.env.example`为`.env`，并根据需求修改配置。
+
+> 必须修改配置`REDIS_ADDR`、`REDIS_PASSWORD`为对应实际值。
 
 ## 启动服务
 
-```shell
+```bash
 docker-compose up -d
 ```
 
 ## 验证服务
 
-浏览器访问`http://${HOST_IP}:13000`，出现页面即表示成功。
+```bash
+export HOST_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env.example.example)
+curl 127.0.0.1:${HOST_PORT}
+```
