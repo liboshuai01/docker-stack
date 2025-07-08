@@ -13,6 +13,7 @@ docker-compose up -d
 ## 验证服务
 
 ```bash
-export HOST_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env)
-curl 127.0.0.1:${HOST_PORT}
+export KAFKA_IP=$(awk -F= '/^KAFKA_IP=/ {print $2}' .env)
+export HOST_KAFKA_PORT=$(awk -F= '/^HOST_KAFKA_PORT=/ {print $2}' .env)
+docker-compose exec kafka kafka-topics.sh --list --bootstrap-server ${KAFKA_IP}:${HOST_KAFKA_PORT}
 ```
