@@ -1,21 +1,21 @@
 services:
 
   memos:
-    image: neosmemo/memos:stable
-    container_name: memos
+    image: neosmemo/memos:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     volumes:
       - 'data:/var/opt/memos'
     ports:
-      - '25230:25230'
+      - '${HOST_PORT}:${MEMOS_PORT}'
     environment:
-      - 'MEMOS_PORT=25230'
-      - 'TZ=Asia/Shanghai'
-    restart: unless-stopped
+      - 'MEMOS_PORT=${MEMOS_PORT}'
+      - 'TZ=${TIMEZONE}'
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
   data:
