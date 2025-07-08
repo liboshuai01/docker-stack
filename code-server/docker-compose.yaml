@@ -1,25 +1,25 @@
 services:
 
   code-server:
-    image: linuxserver/code-server:latest
-    container_name: code-server
+    image: linuxserver/code-server:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     environment:
-      - 'PUID=1000'
-      - 'PGID=1000'
-      - 'TZ=Asia/Shanghai'
+      - 'PUID=${PUID}'
+      - 'PGID=${PGID}'
+      - 'TZ=${TZ}'
       - 'PASSWORD=${PASSWORD}'
       - 'SUDO_PASSWORD=${SUDO_PASSWORD}'
-      - 'DEFAULT_WORKSPACE=/config/workspace'
+      - 'DEFAULT_WORKSPACE=${DEFAULT_WORKSPACE}'
     ports:
-      - '28443:8443'
+      - '${HOST_IP}:${HOST_PORT}:8443'
     volumes:
       - 'data:/config'
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
   data:
