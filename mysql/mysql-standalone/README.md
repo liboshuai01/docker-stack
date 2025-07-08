@@ -12,5 +12,5 @@ docker-compose up -d
 
 ```bash
 export MYSQL_ROOT_PASSWORD=$(awk -F= '/^MYSQL_ROOT_PASSWORD=/ {print $2}' .env)
-docker-compose exec -e MYSQL_PWD="${MYSQL_ROOT_PASSWORD}" mysql-standalone mysql -u root -e "SELECT 1;"
+docker-compose exec -e MYSQL_PWD="${MYSQL_ROOT_PASSWORD}" mysql-standalone mysql -u root -e "SHOW DATABASES;"
 ```
