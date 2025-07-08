@@ -13,8 +13,8 @@ docker-compose up -d
 ## 验证服务
 
 ```bash
-export KAFKA_IP=$(awk -F= '/^KAFKA_IP=/ {print $2}' .env) && \
-export HOST_KAFKA_PORT=$(awk -F= '/^HOST_KAFKA_PORT=/ {print $2}' .env) && \
-docker-compose exec kafka kafka-topics.sh --create --bootstrap-server ${KAFKA_IP}:${HOST_KAFKA_PORT} --topic test_topic && \
-docker-compose exec kafka kafka-topics.sh --list --bootstrap-server ${KAFKA_IP}:${HOST_KAFKA_PORT}
+export TEMP_IP=$(awk -F= '/^KAFKA_IP=/ {print $2}' .env) && \
+export TEMP_PORT=$(awk -F= '/^HOST_KAFKA_PORT=/ {print $2}' .env) && \
+docker-compose exec kafka kafka-topics.sh --create --bootstrap-server ${TEMP_IP}:${TEMP_PORT} --topic test_topic && \
+docker-compose exec kafka kafka-topics.sh --list --bootstrap-server ${TEMP_IP}:${TEMP_PORT}
 ```
