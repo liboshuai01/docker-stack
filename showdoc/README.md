@@ -12,5 +12,5 @@ docker-compose up -d
 
 ```bash
 export TEMP_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env) && \
-curl 127.0.0.1:${TEMP_PORT}
+curl 127.0.0.1:${TEMP_PORT}/install/index.php
 ```
