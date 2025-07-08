@@ -2,13 +2,13 @@ services:
 
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
-    container_name: ${CONTAINER_NAME}
+    container_name: homepage
     ports:
       - '13000:3000'
     environment:
       - 'PUID=1000'
       - 'PGID=1000'
-      - 'TZ=${TIME_ZONE}'
+      - 'TZ=Asia/Shanghai'
       - 'HOMEPAGE_ALLOWED_HOSTS=${HOST_IP}:13000'
     volumes:
       - 'config:/app/config'
