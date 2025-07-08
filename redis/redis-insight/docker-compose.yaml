@@ -1,19 +1,19 @@
 services:
-  
-  redisinsight:
-    image: redis/redisinsight:2.60
-    container_name: redisinsight
+
+  redis-insight:
+    image: redis/redisinsight:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     ports:
-      - '15540:5540'
+      - '${HOST_IP}:${HOST_PORT}:5540'
     volumes:
       - 'data:/data'
       - '/etc/localtime:/etc/localtime:ro'
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
   data:

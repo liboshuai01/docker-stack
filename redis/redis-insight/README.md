@@ -1,13 +1,15 @@
-## 前提准备
+## 配置环境
 
-无
+复制文件`.env.example`为`.env`，并根据需求修改配置。
 
 ## 启动服务
 
-```shell
+```bash
 docker-compose up -d
 ```
 
 ## 验证服务
 
-浏览器访问`http://${HOST_IP}:15540:`，出现redis-insight页面即表示成功。
+```bash
+curl ${宿主机IP}:5541
+```
