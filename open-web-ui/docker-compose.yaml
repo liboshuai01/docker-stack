@@ -1,20 +1,21 @@
 services:
-  
+
   open-webui:
-    image: ghcr.io/open-webui/open-webui:main
-    container_name: open-webui
+    image: ghcr.io/open-webui/open-webui:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     ports:
-      - '46000:8080'
+      - '${HOST_IP}:${HOST_PORT}:8080'
     environment:
       - 'OLLAMA_BASE_URL=${OLLAMA_ADDRESS}'
     volumes:
-      - 'open-webui:/app/backend/data'
-    restart: unless-stopped
+      - 'open-webui-data:/app/backend/data'
+      - '/etc/localtime:/etc/localtime:ro'
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '2G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
-  open-webui:
+  open-webui-data:
