@@ -1,23 +1,24 @@
 services:
 
   openlist:
-    image: openlistteam/openlist:latest
-    container_name: openlist
+    image: openlistteam/openlist:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     volumes:
       - 'data:/opt/openlist/data'
+      - '/etc/localtime:/etc/localtime:ro'
     ports:
-      - '25244:5244'
+      - '${HOST_IP}:${HOST_PORT}:5244'
     environment:
-      - 'PUID=0'
-      - 'PGID=0'
-      - 'UMASK=022'
-      - 'TZ=Asia/Shanghai'
-    restart: unless-stopped
+      - 'PUID=${PUID}'
+      - 'PGID=${PGID}'
+      - 'UMASK=${UMASK}'
+      - 'TZ=${TZ}'
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
   data:
