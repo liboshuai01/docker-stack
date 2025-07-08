@@ -1,13 +1,18 @@
-## 前提准备
+## 配置环境
 
-无
+复制文件`.env.example`为`.env`，并根据需求修改配置。
+
+> 重点修改配置`PASSWORD`为自己的强密码。
 
 ## 启动服务
 
-```shell
+```bash
 docker-compose up -d
 ```
 
 ## 验证服务
 
-浏览器访问`http://${HOST_IP}:40080`，出现页面即表示成功。
+```bash
+export HOST_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env) && \
+curl 127.0.0.1:${HOST_HTTP_PORT}
+```

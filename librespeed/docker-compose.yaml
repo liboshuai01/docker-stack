@@ -1,23 +1,23 @@
 services:
 
   librespeed:
-    image: lscr.io/linuxserver/librespeed:latest
-    container_name: librespeed
+    image: lscr.io/linuxserver/librespeed:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     environment:
-      - 'PUID=1000'
-      - 'PGID=1000'
-      - 'TZ=Asia/Shanghai'
-      - 'PASSWORD=YOUR_PASSWORD'
+      - 'PUID=${PUID}'
+      - 'PGID=${PGID}'
+      - 'TZ=${TZ}'
+      - 'PASSWORD=${PASSWORD}'
     volumes:
       - 'config:/config'
     ports:
-      - '40080:80'
-    restart: unless-stopped
+      - '${HOST_IP}:${HOST_PORT}:80'
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
   config:
