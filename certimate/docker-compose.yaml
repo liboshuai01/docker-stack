@@ -1,6 +1,6 @@
 services:
 
-  certimate-standalone:
+  certimate:
     image: certimate/certimate:${IMAGE_VERSION}
     container_name: ${CONTAINER_NAME}
     ports:
