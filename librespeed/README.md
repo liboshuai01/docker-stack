@@ -14,5 +14,5 @@ docker-compose up -d
 
 ```bash
 export HOST_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env) && \
-curl 127.0.0.1:${HOST_HTTP_PORT}
+curl 127.0.0.1:${HOST_PORT}
 ```
