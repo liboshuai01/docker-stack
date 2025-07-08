@@ -1,20 +1,20 @@
 services:
-  
+
   portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
+    image: portainer/portainer-ce:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     ports:
-      - '19000:9000'
+      - '${HOST_IP}:${HOST_PORT}:9000'
     volumes:
       - '/var/run/docker.sock:/var/run/docker.sock'
       - 'data:/data'
       - '/etc/localtime:/etc/localtime:ro'
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
   data:
