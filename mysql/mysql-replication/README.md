@@ -21,12 +21,12 @@ docker-compose exec -e MYSQL_PWD="${MYSQL_ROOT_PASSWORD}" mysql-master mysql -u 
 
 ```bash
 export MYSQL_ROOT_PASSWORD=$(awk -F= '/^MYSQL_ROOT_PASSWORD=/ {print $2}' .env)
-docker-compose exec -e MYSQL_PWD="${MYSQL_ROOT_PASSWORD}" mysql-slave1 mysql -u root -e "SHOW SLAVE STATUS"
+docker-compose exec -e MYSQL_PWD="${MYSQL_ROOT_PASSWORD}" mysql-slave1 mysql -u root -e "SHOW SLAVE STATUS\G"
 ```
 
 ### 从节点2
 
 ```bash
 export MYSQL_ROOT_PASSWORD=$(awk -F= '/^MYSQL_ROOT_PASSWORD=/ {print $2}' .env)
-docker-compose exec -e MYSQL_PWD="${MYSQL_ROOT_PASSWORD}" mysql-slave2 mysql -u root -e "SHOW SLAVE STATUS"
+docker-compose exec -e MYSQL_PWD="${MYSQL_ROOT_PASSWORD}" mysql-slave2 mysql -u root -e "SHOW SLAVE STATUS\G"
 ```
