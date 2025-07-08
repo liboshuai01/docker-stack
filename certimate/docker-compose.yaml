@@ -1,20 +1,20 @@
 services:
 
-  certimate:
-    image: certimate/certimate:latest
-    container_name: certimate
+  certimate-standalone:
+    image: certimate/certimate:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     ports:
-      - '28090:8090'
+      - '${HOST_IP}:${HOST_PORT}:8090'
     volumes:
       - '/etc/localtime:/etc/localtime:ro'
       - '/etc/timezone:/etc/timezone:ro'
       - 'data:/app/pb_data'
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
   data:

@@ -1,15 +1,15 @@
-## 前提准备
+## 配置环境
 
-无
+复制文件`.env.example`为`.env`，并根据需求修改配置。
 
 ## 启动服务
 
-```shell
+```bash
 docker-compose up -d
 ```
 
 ## 验证服务
 
-浏览器访问`http://${HOST_IP}:28090`，出现certimate页面即表示成功。
-
-> 默认账号/密码：admin@certimate.fun/1234567890
+```bash
+curl 127.0.0.1:8091
+```
