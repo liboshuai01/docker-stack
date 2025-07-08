@@ -6,7 +6,7 @@ services:
     volumes:
       - 'data:/var/opt/memos'
     ports:
-      - '${HOST_PORT}:${MEMOS_PORT}'
+      - '${HOST_IP}:${HOST_PORT}:${MEMOS_PORT}'
     environment:
       - 'MEMOS_PORT=${MEMOS_PORT}'
       - 'TZ=${TIMEZONE}'

@@ -1,21 +1,21 @@
 services:
 
   moments:
-    image: kingwrcy/moments:latest
-    container_name: moments
-    environment:
-      - 'PORT=30000'
-      - 'JWT_KEY=24ef6995-d9c9-47b4-8a55-2c74a94796c6'
+    image: kingwrcy/moments:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     ports:
-      - '30000:30000'
+      - '${HOST_IP}:${HOST_PORT}:${MOMENTS_SERVER_PORT}'
     volumes:
       - 'data:/app/data'
-    restart: unless-stopped
+    environment:
+      - 'PORT=${MOMENTS_SERVER_PORT}'
+      - 'JWT_KEY=${MOMENTS_JWT_KEY}'
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
   data:
