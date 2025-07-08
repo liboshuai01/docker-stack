@@ -1,21 +1,20 @@
 services:
 
   jenkins:
-    image: jenkins/jenkins:jdk21
-    container_name: jenkins
+    image: jenkins/jenkins:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     ports:
-      - '28080:8080'
-      - '50000:50000'
+      - '${HOST_IP}:${HOST_HTTP_PORT}:8080'
+      - '${HOST_IP}:${HOST_JNLP_PORT}:50000'
     volumes:
       - 'data:/var/jenkins_home'
       - '/etc/localtime:/etc/localtime:ro'
-    mem_limit: 4g
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '2'
-          memory: '4G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
   data:
