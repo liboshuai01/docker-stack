@@ -11,5 +11,5 @@ docker-compose up -d
 ## 验证服务
 
 ```bash
-curl localhost:5541
+curl 127.0.0.1:5541
 ```
