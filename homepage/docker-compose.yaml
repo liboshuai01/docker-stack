@@ -1,7 +1,7 @@
 services:
 
   homepage:
-    image: ghcr.io/gethomepage/homepage:v1.3.2
+    image: ghcr.io/gethomepage/homepage:latest
     container_name: ${CONTAINER_NAME}
     ports:
       - '13000:3000'
@@ -9,6 +9,7 @@ services:
       - 'PUID=1000'
       - 'PGID=1000'
       - 'TZ=${TIME_ZONE}'
+      - 'HOMEPAGE_ALLOWED_HOSTS=${HOST_IP}:13000'
     volumes:
       - 'config:/app/config'
       - '/var/run/docker.sock:/var/run/docker.sock'
