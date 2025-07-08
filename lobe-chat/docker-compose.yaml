@@ -1,13 +1,13 @@
 services:
 
   lobechat:
-    image: lobehub/lobe-chat
-    container_name: lobechat
+    image: lobehub/lobe-chat:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     ports:
-      - '3210:3210'
-    restart: unless-stopped
+      - '${HOST_IP}:${HOST_PORT}:3210'
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
