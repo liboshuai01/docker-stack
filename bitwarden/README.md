@@ -10,4 +10,7 @@ docker-compose up -d
 
 ## 验证服务
 
-无
+```bash
+export TEMP_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env) && \
+curl 127.0.0.1:${TEMP_PORT}
+```
