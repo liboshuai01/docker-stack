@@ -1,30 +1,18 @@
-## 前提准备
+## 配置环境
 
-无
+复制文件`.env.example`为`.env`，并根据需求修改配置。
+
+> 必须修改配置`REDIS_ADDR`、`REDIS_PASSWORD`为对应实际值。
 
 ## 启动服务
 
-```shell
+```bash
 docker-compose up -d
 ```
 
 ## 验证服务
 
-访问`redis-exporter`服务，确保正常返回html页面即可。
-```shell
-[lbs@test node-exporter]$ curl -X GET "http://localhost:9121"
-<html lang="en">
-......
-......
-......
-</style>
-  </head>
-  <body>
-    <header>
-      <h1>Redis Exporter</h1>
-    </header>
-......
-......
-......
-</html>
+```bash
+export HOST_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env.example.example)
+curl 127.0.0.1:${HOST_PORT}
 ```
