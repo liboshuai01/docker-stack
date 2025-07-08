@@ -6,6 +6,7 @@ services:
     environment:
       - 'PUID=${PUID}'
       - 'PGID=${PGID}'
+      - 'TZ=${TZ}'
       - 'PASSWORD=${PASSWORD}'
       - 'SUDO_PASSWORD=${SUDO_PASSWORD}'
       - 'DEFAULT_WORKSPACE=${DEFAULT_WORKSPACE}'
@@ -13,7 +14,6 @@ services:
       - '${HOST_IP}:${HOST_PORT}:8443'
     volumes:
       - 'data:/config'
-      - '/etc/localtime:/etc/localtime:ro'
     restart: ${RESTART_POLICY}
     deploy:
       resources:
