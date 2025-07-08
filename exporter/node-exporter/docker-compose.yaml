@@ -1,17 +1,20 @@
 services:
 
   node-exporter:
-    image: prom/node-exporter:v1.6.1
-    container_name: node-exporter
+    image: prom/node-exporter:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     network_mode: host
     pid: host
     volumes:
+      # 挂载主机的根文件系统到容器内的 /host 目录，并设置为只读和 rslave 模式
+      # rslave 模式用于确保挂载点在主机文件系统发生变化时也能同步更新
       - '/:/host:ro,rslave'
     command:
+      # 告诉 Node Exporter 根文件系统在容器内的 /host 路径
       - '--path.rootfs=/host'
-    restart: unless-stopped
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
