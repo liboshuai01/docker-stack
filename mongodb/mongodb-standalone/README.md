@@ -15,5 +15,5 @@ docker-compose up -d
 ```bash
 export TEMP_PASSWORD=$(awk -F= '/^MONGODB_ROOT_PASSWORD=/ {print $2}' .env) && \
 export TEMP_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env) && \
-docker-compose exec mongodb-standalone mongosh -u root -p "${TEMP_PASSWORD}" --eval "db.version()"
+docker-compose exec mongodb-standalone mongo -u root -p "${TEMP_PASSWORD}" --eval "db.version()"
 ```
