@@ -1,15 +1,16 @@
-## 前提准备
+## 配置环境
 
-无
+复制文件`.env.example`为`.env`，并根据需求修改配置。
 
 ## 启动服务
 
-```shell
+```bash
 docker-compose up -d
 ```
 
 ## 验证服务
 
-浏览器访问`http://${HOST_IP}:18081`，出现nexus3页面即表示成功。
-
-> 默认用户是 admin，唯一生成的密码可以在卷内的 admin.password 文件中找到.
+```bash
+export TEMP_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env) && \
+curl 127.0.0.1:${TEMP_PORT}
+```
