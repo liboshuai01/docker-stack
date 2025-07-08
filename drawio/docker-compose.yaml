@@ -1,14 +1,16 @@
 services:
 
   drawio:
-    image: jgraph/drawio:latest
-    container_name: drawio
+    image: jgraph/drawio:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     ports:
-      - '18080:8080'
-      - '18443:8443'
-    restart: unless-stopped
+      - '${HOST_IP}:${HOST_PORT_HTTP}:8080'
+      - '${HOST_IP}:${HOST_PORT_HTTPS}:8443'
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '1G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}

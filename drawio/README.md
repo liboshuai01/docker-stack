@@ -1,13 +1,16 @@
-## 前提准备
+## 配置环境
 
-无
+复制文件`.env.example`为`.env`，并根据需求修改配置。
 
 ## 启动服务
 
-```shell
+```bash
 docker-compose up -d
 ```
 
 ## 验证服务
 
-浏览器访问`http://${HOST_IP}:18443`，出现drawio页面即表示成功。
+```bash
+export HOST_PORT_HTTP=$(awk -F= '/^HOST_PORT_HTTP=/ {print $2}' .env.example)
+curl 127.0.0.1:${HOST_PORT_HTTP}
+```
