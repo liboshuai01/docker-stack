@@ -1,21 +1,27 @@
 services:
 
-  redis:
-    image: bitnami/redis:7.4.2
-    container_name: redis
+  redis-standalone:
+    image: bitnami/redis:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
     ports:
-      - '6380:6379'
+      - '${HOST_IP}:${HOST_PORT}:6379'
     volumes:
       - 'data:/bitnami/redis/data'
       - '/etc/localtime:/etc/localtime:ro'
     environment:
-      - 'REDIS_PASSWORD=YOUR_PASSWORD'
-    restart: unless-stopped
+      - 'REDIS_PASSWORD=${REDIS_PASSWORD}'
+    healthcheck:
+      # 使用 redis-cli ping 命令检查服务健康状态
+      test: ["CMD-SHELL", "redis-cli -h 127.0.0.1 -a ${REDIS_PASSWORD} ping | grep PONG"]
+      interval: 15s
+      timeout: 5s
+      retries: 6
+    restart: ${RESTART_POLICY}
     deploy:
       resources:
         limits:
-          cpus: '1'
-          memory: '2G'
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
   data:
