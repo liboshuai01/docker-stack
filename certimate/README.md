@@ -11,5 +11,6 @@ docker-compose up -d
 ## 验证服务
 
 ```bash
-curl 127.0.0.1:8091
+export HOST_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env)
+curl 127.0.0.1:${HOST_PORT}
 ```
