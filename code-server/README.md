@@ -2,7 +2,7 @@
 
 复制文件`.env.example`为`.env`，并根据需求修改配置。
 
-> 重点修改配置`PASSWORD`与`SUDO_PASSWORD`为自己的强密码。
+> 推荐修改配置`PASSWORD`与`SUDO_PASSWORD`为自定义强密码。
 
 ## 启动服务
 

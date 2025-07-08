@@ -1,0 +1,25 @@
+services:
+
+  mongodb-standalone:
+    image: docker.io/bitnami/mongodb:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
+    ports:
+      - '${HOST_IP}:${HOST_PORT}:27017'
+    volumes:
+      - 'data:/bitnami/mongodb'
+      - '/etc/localtime:/etc/localtime:ro'
+    environment:
+      - 'MONGODB_ROOT_USER=${MONGODB_ROOT_USER}'
+      - 'MONGODB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}'
+      - 'MONGODB_USERNAME=${MONGODB_USERNAME}'
+      - 'MONGODB_PASSWORD=${MONGODB_PASSWORD}'
+      - 'MONGODB_DATABASE=${MONGODB_DATABASE}'
+    restart: ${RESTART_POLICY}
+    deploy:
+      resources:
+        limits:
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
+
+volumes:
+  data:

@@ -1,0 +1,19 @@
+## 配置环境
+
+复制文件`.env.example`为`.env`，并根据需求修改配置。
+
+> 推荐修改配置`MONGODB_ROOT_PASSWORD`、`MONGODB_PASSWORD`为自定义强密码。
+
+## 启动服务
+
+```bash
+docker-compose up -d
+```
+
+## 验证服务
+
+```bash
+export TEMP_PASSWORD=$(awk -F= '/^MONGODB_ROOT_PASSWORD=/ {print $2}' .env) && \
+export TEMP_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env) && \
+docker-compose exec mongodb-standalone mongosh -u root -p "${TEMP_PASSWORD}" --eval "db.version()"
+```
