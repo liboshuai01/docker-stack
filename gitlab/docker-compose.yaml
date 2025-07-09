@@ -3,7 +3,7 @@ services:
   gitlab:
     image: gitlab/gitlab-ce:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
-    hostname: gitlab
+    hostname: ${CONTAINER_NAME}
     environment:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'http://${GITLAB_IP}:${HOST_HTTP_PORT}'

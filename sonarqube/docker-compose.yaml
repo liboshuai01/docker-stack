@@ -2,8 +2,8 @@ services:
 
   sonarqube:
     image: sonarqube:${IMAGE_TAG}
-    hostname: ${CONTAINER_NAME}
     container_name: ${CONTAINER_NAME}
+    hostname: ${CONTAINER_NAME}
     environment:
       - 'SONAR_JDBC_URL=${SONAR_JDBC_URL}'
       - 'SONAR_JDBC_USERNAME=${SONAR_JDBC_USERNAME}'
