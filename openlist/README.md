@@ -14,3 +14,9 @@ docker-compose up -d
 export TEMP_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env) && \
 curl 127.0.0.1:${TEMP_PORT}
 ```
+
+## 初始化admin密码
+
+```bash
+docker-compose exec openlist ./openlist admin set YOUR_PASSWORD
+```
