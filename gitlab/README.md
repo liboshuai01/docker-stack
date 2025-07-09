@@ -17,7 +17,7 @@ export TEMP_PORT=$(awk -F= '/^HOST_HTTP_PORT=/ {print $2}' .env) && \
 curl 127.0.0.1:${TEMP_PORT}
 ```
 
-> `gitlab`启动速度较慢，请耐心等待。
+> 部署过程较长，请耐心等待。
 
 ## 账号密码
 

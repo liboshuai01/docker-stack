@@ -14,3 +14,5 @@ docker-compose up -d
 export TEMP_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env) && \
 curl 127.0.0.1:${TEMP_PORT}
 ```
+
+> 部署过程较长，请耐心等待。
