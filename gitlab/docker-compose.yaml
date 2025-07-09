@@ -1,0 +1,31 @@
+services:
+
+  gitlab:
+    image: gitlab/gitlab-ce:${IMAGE_TAG}
+    container_name: ${CONTAINER_NAME}
+    hostname: '${GITLAB_HOSTNAME}'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url '${GITLAB_EXTERNAL_URL}'
+        gitlab_rails['gitlab_shell_ssh_port'] = ${HOST_SSH_PORT}
+    ports:
+      - '${HOST_IP}:${HOST_HTTP_PORT}:${HOST_HTTP_PORT}'
+      - '${HOST_IP}:${HOST_HTTPS_PORT}:${HOST_HTTPS_PORT}'
+      - '${HOST_IP}:${HOST_SSH_PORT}:22'
+    volumes:
+      - 'config:/etc/gitlab'
+      - 'logs:/var/log/gitlab'
+      - 'data:/var/opt/gitlab'
+      - '/etc/localtime:/etc/localtime:ro'
+    shm_size: '256m' # GitLab 推荐的共享内存大小
+    restart: ${RESTART_POLICY}
+    deploy:
+      resources:
+        limits:
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
+
+volumes:
+  config:
+  logs:
+  data:
