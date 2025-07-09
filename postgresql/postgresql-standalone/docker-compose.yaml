@@ -1,0 +1,24 @@
+services:
+
+  postgresql-standalone:
+    image: bitnami/postgresql:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
+    ports:
+      - '${HOST_IP}:${HOST_PORT}:5432'
+    volumes:
+      - 'data:/bitnami/postgresql'
+      - '/etc/localtime:/etc/localtime:ro'
+    environment:
+      - 'POSTGRESQL_POSTGRES_PASSWORD=${POSTGRESQL_POSTGRES_PASSWORD}'
+      - 'POSTGRESQL_USERNAME=${POSTGRESQL_USERNAME}'
+      - 'POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD}'
+      - 'POSTGRESQL_DATABASE=${POSTGRESQL_DATABASE}'
+    restart: ${RESTART_POLICY}
+    deploy:
+      resources:
+        limits:
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
+
+volumes:
+  data:
