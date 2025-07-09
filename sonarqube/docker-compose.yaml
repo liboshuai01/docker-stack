@@ -1,24 +1,30 @@
 services:
 
   sonarqube:
-    image: sonarqube:25.7.0.110598-community
-    hostname: sonarqube
-    container_name: sonarqube
-    read_only: true
+    image: sonarqube:${IMAGE_VERSION}
+    hostname: ${CONTAINER_NAME}
+    container_name: ${CONTAINER_NAME}
     environment:
-      SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
-      SONAR_JDBC_USERNAME: sonar
-      SONAR_JDBC_PASSWORD: sonar
+      - 'SONAR_JDBC_URL=${SONAR_JDBC_URL}'
+      - 'SONAR_JDBC_USERNAME=${SONAR_JDBC_USERNAME}'
+      - 'SONAR_JDBC_PASSWORD=${SONAR_JDBC_PASSWORD}'
     volumes:
-      - sonarqube_data:/opt/sonarqube/data
-      - sonarqube_extensions:/opt/sonarqube/extensions
-      - sonarqube_logs:/opt/sonarqube/logs
-      - sonarqube_temp:/opt/sonarqube/temp
+      - 'data:/opt/sonarqube/data'
+      - 'extensions:/opt/sonarqube/extensions'
+      - 'logs:/opt/sonarqube/logs'
+      - 'temp:/opt/sonarqube/temp'
+      - '/etc/localtime:/etc/localtime:ro'
     ports:
-      - "29000:9000"
+      - '${HOST_IP}:${HOST_PORT}:9000'
+    restart: ${RESTART_POLICY}
+    deploy:
+      resources:
+        limits:
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
 
 volumes:
-  sonarqube_data:
-  sonarqube_temp:
-  sonarqube_extensions:
-  sonarqube_logs:
+  data:
+  temp:
+  extensions:
+  logs:
