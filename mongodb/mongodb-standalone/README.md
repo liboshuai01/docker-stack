@@ -2,7 +2,7 @@
 
 复制文件`.env.example`为`.env`，并根据需求修改配置。
 
-> 推荐修改配置`MONGODB_ROOT_PASSWORD`、`MONGODB_PASSWORD`为自定义强密码。
+> 推荐修改`MongoDB 初始化配置`为自定义内容。
 
 ## 启动服务
 
