@@ -18,3 +18,15 @@ curl 127.0.0.1:${TEMP_PORT}
 ```
 
 > `gitlab`启动速度较慢，请耐心等待。
+
+## 账号密码
+
+账号:
+```
+root
+```
+
+密码:
+```bash
+docker-compose exec gitlab grep 'Password:' /etc/gitlab/initial_root_password
+```
