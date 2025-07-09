@@ -1,13 +1,14 @@
 services:
 
   alist:
-    image: alist666/alist:${IMAGE_TAG}
+    image: xhofe/alist:${IMAGE_VERSION}
     container_name: ${CONTAINER_NAME}
-    volumes:
-      - 'data:/opt/alist/data'
-      - '/etc/localtime:/etc/localtime:ro'
     ports:
-      - '${HOST_IP}:${HOST_PORT}:5244'
+      - '${HOST_IP}:${PANEL_APP_PORT_HTTP}:5244'
+      - '${HOST_IP}:${PANEL_APP_PORT_S3}:5426'
+    volumes:
+      - 'alist_data:/opt/alist/data'
+      - 'mnt_data:/mnt/data'
     environment:
       - 'PUID=${PUID}'
       - 'PGID=${PGID}'
@@ -21,4 +22,5 @@ services:
           memory: ${MEMORY_LIMIT}
 
 volumes:
-  data:
+  alist_data:
+  mnt_data:
