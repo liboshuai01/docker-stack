@@ -1,7 +1,7 @@
 services:
 
   sonarqube:
-    image: sonarqube:${IMAGE_VERSION}
+    image: sonarqube:${IMAGE_TAG}
     hostname: ${CONTAINER_NAME}
     container_name: ${CONTAINER_NAME}
     environment:

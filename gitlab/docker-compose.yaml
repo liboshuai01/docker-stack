@@ -3,10 +3,10 @@ services:
   gitlab:
     image: gitlab/gitlab-ce:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
-    hostname: '${GITLAB_HOSTNAME}'
+    hostname: gitlab
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url '${GITLAB_EXTERNAL_URL}'
+        external_url 'http://${GITLAB_IP}:${HOST_HTTP_PORT}'
         gitlab_rails['gitlab_shell_ssh_port'] = ${HOST_SSH_PORT}
     ports:
       - '${HOST_IP}:${HOST_HTTP_PORT}:${HOST_HTTP_PORT}'

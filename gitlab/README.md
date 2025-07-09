@@ -2,7 +2,7 @@
 
 复制文件`.env.example`为`.env`，并根据需求修改配置。
 
-> 必须修改配置`GITLAB_HOSTNAME`为宿主机IP或域名。
+> 必须修改配置`GITLAB_IP`为宿主机外部访问IP。
 
 ## 启动服务
 
