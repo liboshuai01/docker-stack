@@ -1,6 +1,6 @@
 services:
 
-  elasticsearch-exporter:
+  es-exporter:
     image: quay.io/prometheuscommunity/elasticsearch-exporter:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     command:
