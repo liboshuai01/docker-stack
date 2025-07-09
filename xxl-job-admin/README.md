@@ -20,3 +20,5 @@ docker-compose up -d
 export TEMP_PORT=$(awk -F= '/^HOST_PORT=/ {print $2}' .env) && \
 curl 127.0.0.1:${TEMP_PORT}
 ```
+
+> 默认账号密码: `admin/123456`
