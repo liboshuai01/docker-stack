@@ -1,0 +1,24 @@
+services:
+
+  openlist:
+    image: alist666/alist:${IMAGE_TAG}
+    container_name: ${CONTAINER_NAME}
+    volumes:
+      - 'data:/opt/alist/data'
+      - '/etc/localtime:/etc/localtime:ro'
+    ports:
+      - '${HOST_IP}:${HOST_PORT}:5244'
+    environment:
+      - 'PUID=${PUID}'
+      - 'PGID=${PGID}'
+      - 'UMASK=${UMASK}'
+      - 'TZ=${TZ}'
+    restart: ${RESTART_POLICY}
+    deploy:
+      resources:
+        limits:
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
+
+volumes:
+  data:
