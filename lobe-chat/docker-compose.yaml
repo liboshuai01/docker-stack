@@ -1,6 +1,6 @@
 services:
 
-  lobechat:
+  lobe-chat:
     image: lobehub/lobe-chat:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
