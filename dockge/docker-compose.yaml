@@ -1,0 +1,22 @@
+services:
+
+  dockge:
+    image: louislam/dockge:${IMAGE_VERSION}
+    container_name: ${CONTAINER_NAME}
+    ports:
+      - '${HOST_IP}:${PANEL_APP_PORT_HTTP}:5001'
+    volumes:
+      - 'data:/app/data'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '${DOCKGE_STACKS_DIR}:${DOCKGE_STACKS_DIR}'
+    environment:
+      - 'DOCKGE_STACKS_DIR=${DOCKGE_STACKS_DIR}'
+    restart: ${RESTART_POLICY}
+    deploy:
+      resources:
+        limits:
+          cpus: ${CPU_LIMIT}
+          memory: ${MEMORY_LIMIT}
+
+volumes:
+  data:
