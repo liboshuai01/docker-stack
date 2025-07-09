@@ -1,6 +1,6 @@
 services:
 
-  openlist:
+  alist:
     image: alist666/alist:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     volumes:
