@@ -1,7 +1,7 @@
 services:
 
   elasticsearch-exporter:
-    image: quay.io/prometheuscommunity/elasticsearch-exporter:${IMAGE_VERSION}
+    image: quay.io/prometheuscommunity/elasticsearch-exporter:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     command:
       - '--es.uri=http://${ES_ADDRESS}'

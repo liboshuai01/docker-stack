@@ -1,7 +1,7 @@
 services:
 
   code-server:
-    image: linuxserver/code-server:${IMAGE_VERSION}
+    image: linuxserver/code-server:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     environment:
       - 'PUID=${PUID}'

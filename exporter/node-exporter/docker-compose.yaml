@@ -1,7 +1,7 @@
 services:
 
   node-exporter:
-    image: prom/node-exporter:${IMAGE_VERSION}
+    image: prom/node-exporter:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     network_mode: host
     pid: host

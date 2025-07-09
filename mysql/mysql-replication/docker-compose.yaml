@@ -1,7 +1,7 @@
 services:
 
   mysql-master:
-    image: bitnami/mysql:${IMAGE_VERSION}
+    image: bitnami/mysql:${IMAGE_TAG}
     container_name: ${MASTER_CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${MASTER_HOST_PORT}:3306'
@@ -32,7 +32,7 @@ services:
           memory: ${MEMORY_LIMIT}
 
   mysql-slave1:
-    image: bitnami/mysql:${IMAGE_VERSION}
+    image: bitnami/mysql:${IMAGE_TAG}
     container_name: ${SLAVE1_CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${SLAVE1_HOST_PORT}:3306'
@@ -64,7 +64,7 @@ services:
         condition: service_healthy
 
   mysql-slave2:
-    image: bitnami/mysql:${IMAGE_VERSION}
+    image: bitnami/mysql:${IMAGE_TAG}
     container_name: ${SLAVE2_CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${SLAVE2_HOST_PORT}:3306'

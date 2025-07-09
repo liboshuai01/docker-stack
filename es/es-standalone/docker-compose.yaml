@@ -1,7 +1,7 @@
 services:
 
   es-standalone:
-    image: docker.elastic.co/elasticsearch/elasticsearch:${IMAGE_VERSION}
+    image: docker.elastic.co/elasticsearch/elasticsearch:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT}:9200'

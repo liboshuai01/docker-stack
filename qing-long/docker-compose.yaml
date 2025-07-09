@@ -1,7 +1,7 @@
 services:
 
   qinglong:
-    image: whyour/qinglong:${IMAGE_VERSION}
+    image: whyour/qinglong:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     volumes:
       - 'data:/ql/data'

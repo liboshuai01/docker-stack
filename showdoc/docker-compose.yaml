@@ -1,7 +1,7 @@
 services:
 
   showdoc:
-    image: star7th/showdoc:${IMAGE_VERSION}
+    image: star7th/showdoc:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT}:80'

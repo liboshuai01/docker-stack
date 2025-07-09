@@ -1,7 +1,7 @@
 services:
 
   bitwarden:
-    image: vaultwarden/server:${IMAGE_VERSION}
+    image: vaultwarden/server:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT}:80'

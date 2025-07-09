@@ -1,7 +1,7 @@
 services:
 
   kafka-exporter:
-    image: danielqsj/kafka-exporter:${IMAGE_VERSION}
+    image: danielqsj/kafka-exporter:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_PORT}:9308'

@@ -1,7 +1,7 @@
 services:
 
   nexus3:
-    image: sonatype/nexus3:${IMAGE_VERSION}
+    image: sonatype/nexus3:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT}:8081'

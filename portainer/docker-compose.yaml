@@ -1,7 +1,7 @@
 services:
 
   portainer:
-    image: portainer/portainer-ce:${IMAGE_VERSION}
+    image: portainer/portainer-ce:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT}:9000'

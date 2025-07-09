@@ -1,7 +1,7 @@
 services:
 
   openlist:
-    image: openlistteam/openlist:${IMAGE_VERSION}
+    image: openlistteam/openlist:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     volumes:
       - 'data:/opt/openlist/data'

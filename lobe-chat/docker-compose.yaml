@@ -1,7 +1,7 @@
 services:
 
   lobechat:
-    image: lobehub/lobe-chat:${IMAGE_VERSION}
+    image: lobehub/lobe-chat:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT}:3210'

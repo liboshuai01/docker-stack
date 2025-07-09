@@ -1,7 +1,7 @@
 services:
 
   certimate:
-    image: certimate/certimate:${IMAGE_VERSION}
+    image: certimate/certimate:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT}:8090'

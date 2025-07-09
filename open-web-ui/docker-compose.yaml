@@ -1,7 +1,7 @@
 services:
 
   open-webui:
-    image: ghcr.io/open-webui/open-webui:${IMAGE_VERSION}
+    image: ghcr.io/open-webui/open-webui:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT}:8080'

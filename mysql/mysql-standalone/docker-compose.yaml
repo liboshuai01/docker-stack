@@ -1,7 +1,7 @@
 services:
 
   mysql-standalone:
-    image: bitnami/mysql:${IMAGE_VERSION}
+    image: bitnami/mysql:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT}:3306'

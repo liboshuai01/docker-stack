@@ -1,7 +1,7 @@
 services:
 
   librespeed:
-    image: lscr.io/linuxserver/librespeed:${IMAGE_VERSION}
+    image: lscr.io/linuxserver/librespeed:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     environment:
       - 'PUID=${PUID}'

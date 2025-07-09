@@ -1,7 +1,7 @@
 services:
 
   zookeeper:
-    image: bitnami/zookeeper:${ZOOKEEPER_IMAGE_VERSION}
+    image: bitnami/zookeeper:${ZOOKEEPER_IMAGE_TAG}
     container_name: ${ZOOKEEPER_CONTAINER_NAME}
     environment:
       - 'ALLOW_ANONYMOUS_LOGIN=${ALLOW_ANONYMOUS_LOGIN}'
@@ -18,7 +18,7 @@ services:
           memory: ${ZOOKEEPER_MEMORY_LIMIT}
 
   kafka:
-    image: bitnami/kafka:${KAFKA_IMAGE_VERSION}
+    image: bitnami/kafka:${KAFKA_IMAGE_TAG}
     container_name: ${KAFKA_CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_KAFKA_PORT}:9092'

@@ -1,7 +1,7 @@
 services:
 
   memos:
-    image: neosmemo/memos:${IMAGE_VERSION}
+    image: neosmemo/memos:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     volumes:
       - 'data:/var/opt/memos'

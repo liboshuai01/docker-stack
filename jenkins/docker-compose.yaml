@@ -1,7 +1,7 @@
 services:
 
   jenkins:
-    image: jenkins/jenkins:${IMAGE_VERSION}
+    image: jenkins/jenkins:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_HTTP_PORT}:8080'

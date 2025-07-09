@@ -1,7 +1,7 @@
 services:
 
   drawio:
-    image: jgraph/drawio:${IMAGE_VERSION}
+    image: jgraph/drawio:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT_HTTP}:8080'

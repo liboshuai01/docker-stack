@@ -1,7 +1,7 @@
 services:
 
   xxl-job-admin:
-    image: xuxueli/xxl-job-admin:${IMAGE_VERSION}
+    image: xuxueli/xxl-job-admin:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_PORT}:8181'

@@ -1,7 +1,7 @@
 services:
 
   redis-insight:
-    image: redis/redisinsight:${IMAGE_VERSION}
+    image: redis/redisinsight:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT}:5540'

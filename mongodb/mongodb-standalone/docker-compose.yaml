@@ -1,7 +1,7 @@
 services:
 
   mongodb-standalone:
-    image: docker.io/bitnami/mongodb:${IMAGE_VERSION}
+    image: docker.io/bitnami/mongodb:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT}:27017'

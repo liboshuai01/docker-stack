@@ -1,7 +1,7 @@
 services:
 
   nextchat:
-    image: yidadaa/chatgpt-next-web:${IMAGE_VERSION}
+    image: yidadaa/chatgpt-next-web:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT}:3000'

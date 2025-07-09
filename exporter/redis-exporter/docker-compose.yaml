@@ -1,7 +1,7 @@
 services:
 
   redis-exporter:
-    image: oliver006/redis_exporter:${IMAGE_VERSION}
+    image: oliver006/redis_exporter:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     command:
       - '-redis.addr=${REDIS_ADDR}'

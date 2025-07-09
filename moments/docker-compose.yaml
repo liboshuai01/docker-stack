@@ -1,7 +1,7 @@
 services:
 
   moments:
-    image: kingwrcy/moments:${IMAGE_VERSION}
+    image: kingwrcy/moments:${IMAGE_TAG}
     container_name: ${CONTAINER_NAME}
     ports:
       - '${HOST_IP}:${HOST_PORT}:${MOMENTS_SERVER_PORT}'
