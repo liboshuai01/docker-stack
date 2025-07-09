@@ -14,3 +14,9 @@ docker-compose up -d
 export TEMP_PORT=$(awk -F= '/^HOST_HTTP_PORT=/ {print $2}' .env) && \
 curl 127.0.0.1:${TEMP_PORT}
 ```
+
+## 获取密码
+
+```bash
+docker-compose exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+```
