@@ -16,3 +16,9 @@ curl 127.0.0.1:${TEMP_PORT}
 ```
 
 > 部署过程较长，请耐心等待。
+
+## 获取admin密码
+
+```bash
+docker-compose exec nexus3 cat /nexus-data/admin.password
+```
