@@ -1,6 +1,7 @@
 services:
   outline:
     image: docker.getoutline.com/outlinewiki/outline:0.85
+    env_file: ./docker.env
     expose:
       - "3000"
     volumes:
@@ -11,6 +12,7 @@ services:
 
   redis:
     image: redis
+    env_file: ./docker.env
     expose:
       - "6379"
     volumes:
@@ -23,7 +25,8 @@ services:
       retries: 3
 
   postgres:
-    image: abcfy2/zhparser:15
+    image: postgres
+    env_file: ./docker.env
     expose:
       - "5432"
     volumes:
@@ -40,6 +43,7 @@ services:
 
   https-portal:
     image: steveltn/https-portal
+    env_file: ./docker.env
     ports:
       - '80:80'
       - '443:443'
