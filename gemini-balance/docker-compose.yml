@@ -2,11 +2,11 @@ volumes:
   mysql_data:
 services:
   gemini-balance:
-    image: ghcr.io/snailyp/gemini-balance:latest
+    image: ghcr.io/snailyp/gemini-balance:${IMAGE_TAG}
     container_name: gemini-balance
     restart: unless-stopped
     ports:
-      - "8000:8000"
+      - "${HOST_IP}:${HOST_PORT}:8000"
     env_file:
       - .env
     depends_on:
