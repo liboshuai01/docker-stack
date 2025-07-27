@@ -8,6 +8,8 @@ services:
       - "${HOST_IP}:${HOST_PORT}:8000"
     env_file:
       - .env
+    environment:
+      - 'TZ=${TZ}'
     depends_on:
       mysql:
         condition: service_healthy
