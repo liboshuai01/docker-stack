@@ -1,0 +1,21 @@
+services:
+
+  zookeeper:
+    image: bitnami/zookeeper:${ZOOKEEPER_IMAGE_TAG}
+    container_name: ${ZOOKEEPER_CONTAINER_NAME}
+    environment:
+      - 'ALLOW_ANONYMOUS_LOGIN=${ALLOW_ANONYMOUS_LOGIN}'
+    ports:
+      - '${HOST_IP}:${HOST_ZOOKEEPER_PORT}:2181'
+    volumes:
+      - 'zoo_data:/bitnami/zookeeper/data'
+      - '/etc/localtime:/etc/localtime:ro'
+    restart: ${RESTART_POLICY}
+    deploy:
+      resources:
+        limits:
+          cpus: ${ZOOKEEPER_CPU_LIMIT}
+          memory: ${ZOOKEEPER_MEMORY_LIMIT}
+
+volumes:
+  zoo_data:
