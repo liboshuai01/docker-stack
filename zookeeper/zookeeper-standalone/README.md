@@ -11,5 +11,5 @@ docker-compose up -d
 ## 验证服务
 
 ```bash
-docker-compose exec kafka zkCli.sh -server 127.0.0.1:2181 stat /
+docker-compose exec zookeeper zkCli.sh -server 127.0.0.1:2181 stat /
 ```
